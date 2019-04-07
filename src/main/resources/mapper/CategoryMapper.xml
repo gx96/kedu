@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaoxuan.kedu.mapper.CategoryMapper">
+    <resultMap id="BaseResultMap" type="com.gaoxuan.kedu.pojo.Category"><!--数据库返回的结果与pojo进行匹配-->
+        <id column="id" jdbcType="INTEGER" property="id"/><!--id设置唯一标识（主键）-->
+        <result column="name" jdbcType="VARCHAR" property="name"/><!--result设置列对应，column是数据库的列名，property是pojo中的属性名-->
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, name
+    </sql>
+    <!--parameterType如果是map，说明是传过来的参数是一个键值对集合，不是类-->
+    <!--resultMap，通过resultMap把数据取出来放在对应的对象属性里，需要指定数据库字段名与实体类的属性之间的对应关系-->
+    <!--resultType返回的与实体类是对应好的-->
+    <!--select表示是一个查询语句，id是方法名，供serviceImpl调用，parameterType是方法的参数类型，resultMap是方法的返回结果和“”中的类关联起来-->
+    <select id="selectByExample" parameterType="com.gaoxuan.kedu.pojo.CategoryExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        'false' as QUERYID,
+        <include refid="Base_Column_List"/>
+        from category
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from category
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <!--delete表示是一个删除语句，id是方法名，parameterType是参数类型-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from category
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <!--insert表示是一个增加语句，使用 keyProperty="id"表示数据库中自动增长的id值返回给实体类对象的属性"id"，
+    useGeneratedKeys="true"保证数据插入数据库时id会自动增加，keyColumn表示指定数据库中自动增加的字段名是哪个，如果数据库中已经设置好，则可以删掉-->
+    <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
+            parameterType="com.gaoxuan.kedu.pojo.Category">
+    insert into category (name)
+    values (#{name,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.gaoxuan.kedu.pojo.Category"
+            useGeneratedKeys="true">
+        insert into category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <!--update表示是一个更新语句-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.gaoxuan.kedu.pojo.Category">
+        update category
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gaoxuan.kedu.pojo.Category">
+    update category
+    set name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
