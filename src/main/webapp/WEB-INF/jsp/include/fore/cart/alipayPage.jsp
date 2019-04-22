@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-     
 <div class="aliPayPageDiv"> 
     <div>
         <span class="confirmMoneyText">扫一扫付款（元）</span>
         <span class="confirmMoney">
-        ￥<fmt:formatNumber type="number" value="${param.total}" minFractionDigits="2"/></span>
+        ￥<fmt:formatNumber type="number" value="${(param.total_fee)/100}" minFractionDigits="2"/></span>
          
     </div>
     <div>
-        <img class="aliPayImg" src="img/site/alipay2wei.png">
+        <img id="qrious">
+        <script>
+            var qr=new QRious({
+                element:document.getElementById('qrious'),
+                size:250,
+                value:'http://www.baidu.com'
+            });
+        </script>
     </div>
  
     <div>

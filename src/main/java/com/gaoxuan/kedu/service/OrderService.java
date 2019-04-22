@@ -19,6 +19,7 @@ public interface OrderService {
     void delete(int id);
     void update(Order c);
     Order get(int id);
+    Order getByid(String orderCode);
     List list();
     float add(Order c,List<OrderItem> ois);
     List list(int uid, String excludedStatus);

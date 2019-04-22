@@ -70,6 +70,12 @@
     from order_
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByOrderCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_
+    where orderCode = #{id}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from order_
     where id = #{id,jdbcType=INTEGER}

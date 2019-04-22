@@ -14,6 +14,7 @@ public interface OrderMapper {
     List<Order> selectByExample(OrderExample example);
 
     Order selectByPrimaryKey(Integer id);
+    Order selectByOrderCode(String id);
 
     int updateByPrimaryKeySelective(Order record);
 

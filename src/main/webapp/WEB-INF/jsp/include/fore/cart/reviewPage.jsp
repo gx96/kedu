@@ -21,17 +21,17 @@
         </div>
         <div style="clear:both"></div>
     </div>
-    <div class="reviewStasticsDiv">
-        <div class="reviewStasticsLeft">
-                <div class="reviewStasticsLeftTop"></div>
-                <div class="reviewStasticsLeftContent">累计评价 <span class="reviewStasticsNumber"> ${p.reviewCount}</span></div>
-                <div class="reviewStasticsLeftFoot"></div>
-        </div>
-        <div class="reviewStasticsRight">
-            <div class="reviewStasticsRightEmpty"></div>
-            <div class="reviewStasticsFoot"></div>
-        </div>
-    </div>       
+    <%--<div class="reviewStasticsDiv">--%>
+        <%--<div class="reviewStasticsLeft">--%>
+                <%--<div class="reviewStasticsLeftTop"></div>--%>
+                <%--<div class="reviewStasticsLeftContent">累计评价 <span class="reviewStasticsNumber"> ${p.reviewCount}</span></div>--%>
+                <%--<div class="reviewStasticsLeftFoot"></div>--%>
+        <%--</div>--%>
+        <%--<div class="reviewStasticsRight">--%>
+            <%--<div class="reviewStasticsRightEmpty"></div>--%>
+            <%--<div class="reviewStasticsFoot"></div>--%>
+        <%--</div>--%>
+    <%--</div>       --%>
      
     <c:if test="${param.showonly==true}">
     <div class="reviewDivlistReviews">
@@ -48,17 +48,16 @@
     <c:if test="${param.showonly!=true}">
         <div class="makeReviewDiv">
         <form method="post" action="foredoreview">
-            <div class="makeReviewText">其他买家，需要你的建议哦！</div>
+            <div class="makeReviewText"><p align="center">将你的使用心得分享给其他人吧！</p></div>
             <table class="makeReviewTable">
                 <tr>
-                    <td class="makeReviewTableFirstTD">评价商品</td>
                     <td><textarea name="content"></textarea></td>
                 </tr>
             </table>
             <div class="makeReviewButtonDiv">
                 <input type="hidden" name="oid" value="${o.id}">
                 <input type="hidden" name="pid" value="${p.id}">
-                <button type="submit">提交评价</button>
+                <button type="submit">发布</button>
             </div>
         </form>
         </div>   

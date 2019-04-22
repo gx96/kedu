@@ -18,8 +18,8 @@ public class PageController {
     public String loginPage() {
         return "fore/login";
     }
-    @RequestMapping("forealipay")
-    public String alipay(){
-        return "fore/alipay";
-    }
+//    @RequestMapping("forealipay")
+//    public String alipay(){
+//        return "fore/alipay";
+//    }
 }

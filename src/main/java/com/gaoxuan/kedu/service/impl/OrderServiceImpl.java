@@ -45,7 +45,12 @@ public class OrderServiceImpl implements OrderService {
     public Order get(int id) {
         return orderMapper.selectByPrimaryKey(id);
     }
- 
+
+    @Override
+    public Order getByid(String orderCode) {
+        return orderMapper.selectByOrderCode(orderCode);
+    }
+
     public List<Order> list(){
         OrderExample example =new OrderExample();
         example.setOrderByClause("id desc");

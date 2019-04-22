@@ -1,5 +1,11 @@
 package com.gaoxuan.kedu.controller;
 
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.gaoxuan.kedu.util.AlipayConfig;
+import com.gaoxuan.kedu.util.IdWorker;
 import comparator.*;
 import com.gaoxuan.kedu.pojo.*;
 import com.gaoxuan.kedu.service.*;
@@ -7,6 +13,7 @@ import com.github.pagehelper.PageHelper;
 
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +22,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -43,7 +49,10 @@ public class ForeController {
     ReviewService reviewService;
     @Autowired
     RecommendService recommendService;
-
+    @Autowired
+    WeixinPayService weixinPayService;
+    @Autowired
+    AlipayService alipayService;
     @RequestMapping("forehome")
     public String home(Model model, HttpSession session) {
         List<Category> cs = categoryService.list();
@@ -97,7 +106,7 @@ public class ForeController {
         User user = userService.get(name, password);
 
         if (null == user) {
-            model.addAttribute("msg", "账号密码错误");
+            model.addAttribute("msg", "用户名或密码错误，请重新输入");
             return "fore/login";
         }
         session.setAttribute("user", user);
@@ -314,26 +323,71 @@ public class ForeController {
     }
 
     @RequestMapping("forecreateOrder")
-    public String createOrder(Model model, Order order, HttpSession session) {
+    @ResponseBody
+    public String createOrder(Model model, Order order, HttpSession session,HttpServletResponse response,HttpServletRequest request) {
         User user = (User) session.getAttribute("user");
         String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + RandomUtils.nextInt(10000);
-        order.setOrderCode(orderCode);
+        order.setOrderCode(orderCode);//订单号
         order.setCreateDate(new Date());
         order.setUid(user.getId());
         order.setStatus(OrderService.waitPay);
         List<OrderItem> ois = (List<OrderItem>) session.getAttribute("ois");
+        //微信接口
+        //Map map=weixinPayService.createNative(idWorker.nextId()+"","1");
+        //支付宝接口
+        //获得初始化的AlipayClient
+        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
+        //设置请求参数
+        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
+        alipayRequest.setReturnUrl(AlipayConfig.return_url);
+        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
-        float total = orderService.add(order, ois);
-        return "redirect:forealipay?oid=" + order.getId() + "&total=" + total;
+        String subject="kedu";//不能用中文
+        String total_fee = orderService.add(order, ois)+"";
+        alipayRequest.setBizContent("{\"out_trade_no\":\"" + orderCode + "\","
+                + "\"total_amount\":\"" + total_fee + "\","
+                + "\"subject\":\"" + subject + "\","
+                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+        //请求
+        System.out.println(alipayRequest);
+        String result = null;
+        try {
+            result = alipayClient.pageExecute(alipayRequest).getBody();
+            System.out.println(result);
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(result);
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        return result;
+//        float total = orderService.add(order, ois);
+////        return "redirect:forealipay?oid=" + order.getId() + "&total=" + total+"&valueurl="+map.get("code_url")+"&total_fee="+map.get("total_fee");
+//        return "redirect:forealipay?oid=" + order.getId() + "&total=" + total;
+    }
+    @RequestMapping("forealipay")
+    public String alipay(Model model,HttpServletRequest request){
+
+        model.addAttribute("wechat",request.getAttribute("WeChat"));
+        return "fore/alipay";
     }
 
     @RequestMapping("forepayed")
-    public String payed(int oid, float total, Model model) {
-        Order order = orderService.get(oid);
+//    public String payed(int oid, float total, Model model) {
+    public String payed(String out_trade_no, Model model,String timestamp,String total_amount) {
+        Order order=orderService.getByid(out_trade_no);
         order.setStatus(OrderService.waitDelivery);
         order.setPayDate(new Date());
         orderService.update(order);
+        System.out.println(order.getAddress());
         model.addAttribute("o", order);
+        model.addAttribute("total_amount",total_amount);
+//        Order order = orderService.get(oid);
+//        order.setStatus(OrderService.waitDelivery);
+//        order.setPayDate(new Date());
+//        orderService.update(order);
+//        model.addAttribute("o", order);
         return "fore/payed";
     }
 
@@ -341,11 +395,8 @@ public class ForeController {
     public String bought(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
         List<Order> os = orderService.list(user.getId(), OrderService.delete);
-
         orderItemService.fill(os);
-
         model.addAttribute("os", os);
-
         return "fore/bought";
     }
 
