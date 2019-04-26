@@ -37,7 +37,7 @@
 	}
 </style>
 <div class="login1">
-	<a href="forehome"><img alt="" src="img/site/logo3.jpg"></a><font size="5">欢迎登陆</font>
+	<a href="forehome"><img alt="" src="img/site/logo3.jpg"></a><font size="5">欢迎登录</font>
 </div>
 <div id="loginDiv" style="position: relative">
     <img id="loginBackgroundImg" class="loginBackgroundImg" src="img/site/login.jpg">

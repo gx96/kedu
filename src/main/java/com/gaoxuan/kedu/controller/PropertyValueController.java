@@ -33,6 +33,7 @@ public class PropertyValueController {
     @RequestMapping("admin_propertyValue_update")
     @ResponseBody
     public String update(PropertyValue pv) {
+
         propertyValueService.update(pv);
         return "success";
     }

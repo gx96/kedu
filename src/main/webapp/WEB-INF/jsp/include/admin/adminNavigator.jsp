@@ -1,8 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
-<ul class="nav nav-tabs">
-    <li class="" id="li1"><a href="admin_category_list">客都</a></li>
-    <li class="active" id="li2"><a href="admin_category_list">分类管理</a></li>
-    <li class="" id="li3"><a href="admin_user_list">用户管理</a></li>
-    <li class="" id="li4"><a href="admin_order_list">订单管理</a></li>
-</ul>
+<!--顶部导航栏部分-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" title="logoTitle" href="#">客都后台管理</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li role="presentation">
+                    <a href="#">当前用户：<span class="badge">${sessionScope.admin.name}</span></a>
+                </li>
+                <li>
+                    <a href="adminLoginPage">
+                        <span class="glyphicon glyphicon-lock"></span>退出登录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

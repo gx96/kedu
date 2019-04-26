@@ -80,6 +80,7 @@
                 return checkEmpty("name", "分类名称") && checkEmpty("categoryPic", "分类图片");
             });
         });
+
     </script>
 </head>
 <body>

@@ -27,7 +27,7 @@ public class CategoryController {
     CategoryService categoryService;
   
     @RequestMapping("admin_category_list")//注解RequestMapping("admin_category_list")映射admin_category_list路径的访问
-    public String list(Model model,Page page){//Page用于获取浏览器传递过来的分页信息
+    public String list(Model model,Page page,String name){//Page用于获取浏览器传递过来的分页信息
         PageHelper.offsetPage(page.getStart(), page.getCount());//1. 通过分页插件指定分页参数
         List<Category> cs= categoryService.list();//获取所有的Category对象，然后放在“cs”集合中.2. 调用list() 获取对应分页的数据
         int total = (int) new PageInfo<>(cs).getTotal();//3. 通过PageInfo获取总数

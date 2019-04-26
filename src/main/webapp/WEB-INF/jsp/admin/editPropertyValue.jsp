@@ -1,55 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*"%>
- 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@include file="../include/admin/adminHeader.jsp"%>
-<%@include file="../include/admin/adminNavigator.jsp"%>
- 
+         pageEncoding="UTF-8" import="java.util.*" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@include file="../include/admin/adminHeader.jsp" %>
+<%@include file="../include/admin/adminNavigator.jsp" %>
+
 <title>编辑产品属性值</title>
- 
+
 <script>
-$(function() {
-    $("input.pvValue").keyup(function(){
-        var value = $(this).val();
-        var page = "admin_propertyValue_update";
-        var pvid = $(this).attr("pvid");
-        var parentSpan = $(this).parent("span");
-        parentSpan.css("border","1px solid yellow");
-        $.post(
+    $(function () {
+        //keyup按下事件
+        $("input.pvValue").keyup(function () {
+            var value = $(this).val();
+            var page = "admin_propertyValue_update";
+            var pvid = $(this).attr("pvid");
+            var parentSpan = $(this).parent("span");
+            parentSpan.css("border", "0px solid yellow");
+            $.post(
                 page,
-                {"value":value,"id":pvid},
-                function(result){
-                    if("success"==result)
-                        parentSpan.css("border","1px solid green");
+                {"value": value, "id": pvid},
+                function (result) {
+                    if ("success" == result)
+                        parentSpan.css("border", "1px solid green");
                     else
-                        parentSpan.css("border","1px solid red");
+                        parentSpan.css("border", "1px solid red");
                 }
-            );     
+            );
+            // $.ajax({
+            //     type:"post",
+            //     url:page,
+            //     dataType:"json",
+            //     data:{value:value,id:pvid},
+            //     success:parentSpan.css("border","1px solid green"),
+            //     error:alert()
+            //         // parentSpan.css("border","1px solid red")
+            // });
+        });
     });
-});
 </script>
- <script>
-	document.getElementById('li1').className = '';
-	document.getElementById('li2').className = 'active';
-	document.getElementById('li3').className = '';
-	document.getElementById('li4').className = '';
-</script>
-<div class="workingArea">
-    <ol class="breadcrumb">
-      <li><a href="admin_category_list">所有分类</a></li>
-      <li><a href="admin_product_list?cid=${p.category.id}">${p.category.name}</a></li>
-      <%--<li class="active">${p.name}</li>--%>
-      <%--<li class="active">编辑产品属性</li>--%>
-    </ol>
-     
-    <div class="editPVDiv">
-        <c:forEach items="${pvs}" var="pv">
-            <div class="eachPV">
-                <span class="pvName" >${pv.property.name}</span>
-                <span class="pvValue"><input class="pvValue" pvid="${pv.id}" type="text" value="${pv.value}"></span>
+<div class="pageContainer">
+    <!--左导航-->
+    <%@include file="../include/admin/adminNavigatorleft.jsp" %>
+    <!-- 正文内容部分 -->
+    <div class="pageContent">
+        <div class="workingArea">
+            <ol class="breadcrumb">
+                <%--<li><a href="admin_category_list">返回</a></li>--%>
+                <li><a href="admin_product_list?cid=${p.category.id}">返回</a></li>
+                <%--<li class="active">${p.name}</li>--%>
+                <%--<li class="active">编辑产品属性</li>--%>
+            </ol>
+
+            <div class="editPVDiv">
+                <c:forEach items="${pvs}" var="pv">
+                    <div class="eachPV">
+                        <span class="pvName">${pv.property.name}</span>
+                        <span class="pvValue"><input class="pvValue" pvid="${pv.id}" type="text" value="${pv.value}"></span>
+                    </div>
+                </c:forEach>
+                <div style="clear:both"></div>
             </div>
-        </c:forEach>
-    <div style="clear:both"></div> 
+        </div>
     </div>
-     
 </div>
