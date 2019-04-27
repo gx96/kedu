@@ -11,7 +11,7 @@ body {
 
 a {
 	
-	color: #999;
+	color: #000;
 }
 h1 {text-decoration: overline}
 h2 {text-decoration: line-through}
@@ -100,6 +100,15 @@ div.addCartButton1 {
 	font-family: arial;
 	margin-left:400px;
 }
+#success11 {
+    border: 1px solid white;
+    background-color:#B57C5B;
+    text-align: center;
+    line-height: 35px;
+    color: white;
+    width:200px;
+    font-family: arial;
+}
 .addCartButton {
 	border: 1px solid #C40000;
 	background-color: #fff;
@@ -153,6 +162,7 @@ div.searchBelow a {
 }
 div.categoryWithCarousel {
 	width: 100%;
+
 }
 
 div.carouselBackgroundDiv{
@@ -173,7 +183,7 @@ div.carousel-of-product {
 div.recommend {
 	width: 180px;
 	height: 490px;
-	margin:0px 10px 0px 1000px;
+	margin:0px 10px 0px 970px;
 	border:1px solid #fff;
 	position:absolute;
 }
@@ -203,13 +213,13 @@ position:absolute;
 
 div.categoryMenu {
 	width: 151px;
-	background-color: #e2e2e3;
+	background-color: #fff;
 	margin-left: 150px;
 	left:0px!important;
 	position: absolute;
 	z-index: 1;
 	border-top-width: 1px;
-	padding:26px 0px;
+	/*padding:26px 0px;*/
 }
 
 div.categoryWithCarousel div.productsAsideCategorys {
@@ -226,21 +236,17 @@ div.categoryWithCarousel div.productsAsideCategorys {
 }
 
 div.categoryWithCarousel div.eachCategory:hover {
-	background-color: white;
+	background-color:#e4b9c0;
 }
 div.categoryWithCarousel div.eachCategory span {
 	margin-right: 10px;
 }
 
 div.categoryWithCarousel div.eachCategory {
-	/* 	height:30px; */
 	line-height: 30px;
 	padding-left: 15px;
 	padding-bottom:5px;
-	/* 	border:1px dashed lightgray; */
 	font-size: 14px;
-	/* 	background-image:url(../../img/site/eachcategory.png); */
-	/* 	background-repeat: no-repeat; */
 }
 
 div.categoryWithCarousel div.rightMenu {
@@ -296,10 +302,12 @@ div.productsAsideCategorys div.row div.seperator {
 
 div.categoryMenu a {
 	color: #000;
+    padding-top:0px;
+    font-size: 18px;
 }
 
 div.categoryMenu a:hover {
-	color: lightskyblue;
+	color: black;
 	text-decoration: none;
 }
 
@@ -327,7 +335,7 @@ div.homepageCategoryProducts {
 	background-color: #F5F5F5;
 	padding: 10px 10px 50px 10px;
 	margin: 20px auto;
-	max-width: 1013px;
+	max-width: 1200px;
 }
 
 div.left-mark {
@@ -1500,7 +1508,8 @@ button.confirmPay {
 div.payedDiv {
 	border: 1px solid #D4D4D4;
 	max-width: 1013px;
-	margin: 10px auto 20px auto;
+	margin: 50px auto;
+    height:450px;
 }
 
 div.payedTextDiv {
@@ -1887,7 +1896,7 @@ td.orderListItemNumberTD {
 
 div.confirmPayPageDiv {
 	max-width: 1013px;
-	margin: 10px auto;
+	margin:70px auto;
 }
 
 div.confirmPayImageDiv {
@@ -1928,7 +1937,7 @@ div.confirmPayOrderInfoText {
 }
 
 div.confirmPayOrderItemDiv {
-	margin: 0px 20px;
+	margin: 50px 20px;
 }
 
 div.confirmPayOrderItemText {
@@ -1945,7 +1954,7 @@ table.confirmPayOrderItemTable thead {
 }
 
 table.confirmPayOrderItemTable tr {
-	border: 1px solid #DDDDDD;
+	/*border: 1px solid #DDDDDD;*/
 }
 
 table.confirmPayOrderItemTable {
@@ -1983,7 +1992,7 @@ span.confirmPayOrderItemSumPrice {
 
 table.confirmPayOrderDetailTable {
 	width: 100%;
-	border-top: 1px solid #DDDDDD;
+	/*border-top: 1px solid #DDDDDD;*/
 }
 
 table.confirmPayOrderDetailTable td {
@@ -2030,16 +2039,20 @@ button.confirmPayButton {
 	width: 67px;
 	height: 30px;
 	border: 1px solid #E67C00;
-	background-color: #F4A21D;
+	background-color: red;
 	border-radius: 4px;
 	color: white;
 }
 
 div.orderFinishDiv {
-	border: 1px solid #E5E5E5;
-	padding: 40px;
-	max-width: 1013px;
-	margin: 10px auto;
+    margin: 25px auto;
+    background-color: #F3FDF6;
+    border: 1px solid #DEF3E6;
+    font-size: 16px;
+    color: #3C3C3C;
+    width:1200px;
+    height:500px;
+    padding: 10px 330px;
 }
 
 div.orderFinishDiv span {
@@ -2287,12 +2300,14 @@ table.registerTable {
 }
 
 div.registerSuccessDiv {
-	margin: 10px 20px;
+	margin: 80px auto;
 	background-color: #F3FDF6;
 	border: 1px solid #DEF3E6;
 	font-size: 16px;
 	color: #3C3C3C;
-	padding: 20px 130px;
+    width:1200px;
+    height:500px;
+	padding: 10px 330px;
 }
 
 div.categoryPageDiv {
@@ -2332,13 +2347,13 @@ div.registerErrorMessageDiv {
 	
 }
 
-td.orderItemProductInfoPartTD {
-	border-bottom: solid 1px #ECECEC;
-}
+/*td.orderItemProductInfoPartTD {*/
+	/*border-bottom: solid 1px #ECECEC;*/
+/*}*/
 
-td.orderItemOrderInfoPartTD {
-	border: solid 1px #fff;
-}
+/*td.orderItemOrderInfoPartTD {*/
+	/*border: solid 1px #fff;*/
+/*}*/
 
 div.reviewDate {
 	width: 100px;

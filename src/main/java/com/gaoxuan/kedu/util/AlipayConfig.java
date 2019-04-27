@@ -10,9 +10,9 @@ public class AlipayConfig {
     // 支付宝公钥
     public static String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArzywmV5zAhvMqbNRvX+UyWUSr2o9AYU/Ve2HYNPwOnZQf8DhCC5sEHv2FXnqa1jyJ9UKsa/l38Y25XDREg/ptRXFXVDzBa8IpkEISmV4gyaXy5wh+mwexBIYg51JHi9yg08EMk7vkU6N0GWD6j2j2qnKltii5sNUXyZeNNbzIxxrCbS8cyHHIZHexBadPrA9EtTGhQCVbFoJWY6mlhpL3BswygjT7BvBFN/jIENMtb5SP2y1PCNA9hCOWbnHLgb/+4nykt/fKV03phrkAUIESgcBLzlPJWWwl6NeVCD3EBCcT4MiW9fg6enZ6L4RlS6mbzMiNmHYosdM+BQCXRBFwQIDAQAB";
     // 服务器异步通知页面路径 需http://或者https://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "http://localhost:8079/kedu/forepayed";
+    public static String notify_url = "http://localhost:8080/kedu/forepayed";
     // 页面跳转同步通知页面路径 需http://或者https://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问 商户可以自定义同步跳转地址
-    public static String return_url = "http://localhost:8079/kedu/forepayed";
+    public static String return_url = "http://localhost:8080/kedu/forepayed";
     // 加密RSA2
     public static String SIGNTYPE = "RSA2";
     // 编码

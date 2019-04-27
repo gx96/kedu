@@ -46,8 +46,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 "login",
                 "product",
                 "category",
-                "search"};
- 
+                "search"
+                };
         String uri = request.getRequestURI();
         uri = StringUtils.remove(uri, contextPath);
 //        System.out.println(uri);
@@ -85,8 +85,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
       
     public void afterCompletion(HttpServletRequest request,   
             HttpServletResponse response, Object handler, Exception ex) 
-    throws Exception { 
-            
-    } 
-        
+    throws Exception {
+    }
 }

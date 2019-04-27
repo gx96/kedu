@@ -29,7 +29,6 @@
         <div class="item">
             <img class="carouselImage" src="img/carousel/4.jpg">
         </div>
-
     </div>
     <%@include file="recommend.jsp"%>
 </div>

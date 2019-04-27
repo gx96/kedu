@@ -14,7 +14,7 @@
 	</span>
 	<span class="pull-right">
 	<c:if test="${!empty user}">
-		<a href="loginPage">${user.name}</a>
+		<a href="">${user.name}</a>
 		<a href="forelogout">退出</a>
 	</c:if>
 

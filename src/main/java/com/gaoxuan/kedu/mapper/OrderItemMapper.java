@@ -12,10 +12,12 @@ public interface OrderItemMapper {
     int insertSelective(OrderItem record);
 
     List<OrderItem> selectByExample(OrderItemExample example);
+    List<OrderItem> selectByOid(Integer oid);
 
     OrderItem selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(OrderItem record);
 
     int updateByPrimaryKey(OrderItem record);
+
 }

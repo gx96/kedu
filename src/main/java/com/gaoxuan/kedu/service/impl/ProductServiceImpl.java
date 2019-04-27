@@ -53,6 +53,7 @@ public class ProductServiceImpl implements ProductService {
  
     public void setCategory(List<Product> ps){
         for (Product p : ps)
+
             setCategory(p);
     }
     public void setCategory(Product p){
@@ -136,6 +137,7 @@ public class ProductServiceImpl implements ProductService {
         example.setOrderByClause("id desc");
         List result = productMapper.selectByExample(example);
         setFirstProductImage(result);
+        System.out.println(result.size());
         setCategory(result);
         return result;
     }

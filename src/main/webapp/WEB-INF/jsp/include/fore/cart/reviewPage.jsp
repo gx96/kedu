@@ -21,17 +21,17 @@
         </div>
         <div style="clear:both"></div>
     </div>
-    <%--<div class="reviewStasticsDiv">--%>
-        <%--<div class="reviewStasticsLeft">--%>
-                <%--<div class="reviewStasticsLeftTop"></div>--%>
-                <%--<div class="reviewStasticsLeftContent">累计评价 <span class="reviewStasticsNumber"> ${p.reviewCount}</span></div>--%>
-                <%--<div class="reviewStasticsLeftFoot"></div>--%>
-        <%--</div>--%>
-        <%--<div class="reviewStasticsRight">--%>
-            <%--<div class="reviewStasticsRightEmpty"></div>--%>
-            <%--<div class="reviewStasticsFoot"></div>--%>
-        <%--</div>--%>
-    <%--</div>       --%>
+    <div class="reviewStasticsDiv">
+        <div class="reviewStasticsLeft">
+                <div class="reviewStasticsLeftTop"></div>
+                <div class="reviewStasticsLeftContent">累计评价 <span class="reviewStasticsNumber"> ${p.reviewCount}</span></div>
+                <div class="reviewStasticsLeftFoot"></div>
+        </div>
+        <div class="reviewStasticsRight">
+            <div class="reviewStasticsRightEmpty"></div>
+            <div class="reviewStasticsFoot"></div>
+        </div>
+    </div>
      
     <c:if test="${param.showonly==true}">
     <div class="reviewDivlistReviews">

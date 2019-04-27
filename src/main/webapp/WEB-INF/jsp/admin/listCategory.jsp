@@ -13,7 +13,7 @@
             <table class="table table-striped table-bordered table-hover  table-condensed ">
                 <thead>
                 <tr class="info">
-                    <th>分类编号</th>
+                    <%--<th>分类编号</th>--%>
                     		<%--<th>图片</th>--%>
                     <th>分类名称</th>
                     <th>属性管理</th>
@@ -25,7 +25,7 @@
                 <tbody>
                 <c:forEach items="${cs}" var="c"><!--取到model中的cs集合，赋值给c数组，使用foreach从c[0]对象开始遍历-->
                 <tr>
-                    <td>${c.id}</td>
+                    <%--<td>${c.id}</td>--%>
                         <%--<td><img height="40px" src="img/category/${c.id}.jpg"></td>--%>
                     <td>${c.name}</td>
                     <td><a href="admin_property_list?cid=${c.id}"><span

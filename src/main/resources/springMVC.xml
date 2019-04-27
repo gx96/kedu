@@ -14,6 +14,7 @@
     </context:component-scan>
     <mvc:annotation-driven/>
 
+
     <!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
     <context:property-placeholder ignore-unresolvable="true" location=" classpath:weixinpay.properties"/>
 

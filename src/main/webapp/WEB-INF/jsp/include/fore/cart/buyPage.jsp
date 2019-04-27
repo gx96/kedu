@@ -8,23 +8,19 @@
 				<table class="addressTable">
 					<tr>
 						<td class="firstColumn">详细地址：</td>
-
-						<td><textarea name="address"
-								placeholder="请填写收货地址。"></textarea></td>
+						<td><textarea name="address" placeholder="请填写收货地址。">陕西省宝鸡市渭滨区宝鸡文理学院</textarea></td>
 					</tr>
 					<tr>
 						<td>邮政编码：</td>
-						<td><input name="post" placeholder="请填写收货地址的邮政编码"
-							type="text"></td>
+						<td><input name="post" placeholder="721000" type="text"></td>
 					</tr>
 					<tr>
 						<td>姓名：</td>
-						<td><input name="receiver" placeholder="请填写收货人姓名"
-							type="text"></td>
+						<td><input name="receiver" placeholder="请填写收货人姓名" type="text" value="张三"></td>
 					</tr>
 					<tr>
 						<td>手机号码：</td>
-						<td><input name="mobile" placeholder="请填写收货人手机号码" type="text"></td>
+						<td><input name="mobile" placeholder="请填写收货人手机号码" type="text" value="18829223388"></td>
 					</tr>
 				</table>
 

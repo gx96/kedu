@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 <!-- 左侧导航栏 -->
-<script>
-    $(function(){
-        $(".nav li").click(function() {
-            $(".active").removeClass('active');
-            $(this).addClass("active");
-        });
-    });
-</script>
+<%--<script>--%>
+    <%--$(function(){--%>
+        <%--$(".nav li").click(function() {--%>
+            <%--$(".active").removeClass('active');--%>
+            <%--$(this).addClass("active");--%>
+        <%--});--%>
+    <%--});--%>
+<%--</script>--%>
 <div class="pageSidebar">
     <ul class="nav nav-stacked nav-pills">
         <li role="presentation">

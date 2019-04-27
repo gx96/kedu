@@ -64,7 +64,10 @@ div.workingAreaUser{
 	margin:60px 400px;
 }
 div.workingAreaOrder{
-	margin:60px 100px;
+	margin:30px 10px;
+	height:600px;
+	overflow: auto;
+
 }
 div.addDiv{
 	width:400px;

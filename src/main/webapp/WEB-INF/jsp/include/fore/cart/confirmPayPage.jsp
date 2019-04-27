@@ -3,7 +3,6 @@
 	
 <div class="confirmPayPageDiv">
 	<div class="confirmPayOrderItemDiv">
-		<div class="confirmPayOrderItemText">订单信息</div>
 		<table class="confirmPayOrderItemTable">
 			<thead>
 				<th colspan="2">商品</th>		
@@ -23,12 +22,12 @@
 				</tr>
 			</c:forEach>
 		</table>
-		
-		<div class="confirmPayOrderItemText pull-right">
-			付款： <span class="confirmPayOrderItemSumPrice">￥<fmt:formatNumber type="number" value="${o.total}" minFractionDigits="2"/></span>
-		</div>
-		
-		
+		<%----%>
+		<%--<div class="confirmPayOrderItemText pull-right">--%>
+			<%--付款： <span class="confirmPayOrderItemSumPrice">￥<fmt:formatNumber type="number" value="${o.total}" minFractionDigits="2"/></span>--%>
+		<%--</div>--%>
+
+
 	</div>
 	<div class="confirmPayOrderDetailDiv">
 		
@@ -36,6 +35,10 @@
 			<tr>
 				<td>订单编号：</td>
 				<td>${o.orderCode} </td>
+			</tr>
+			<tr>
+				<td>付款：</td>
+				<td><span class="confirmPayOrderItemSumPrice">￥<fmt:formatNumber type="number" value="${o.total}" minFractionDigits="2"/></span></td>
 			</tr>
 			<tr>
 				<td>收货信息： </td>
@@ -49,6 +52,6 @@
 		
 	</div>
 	<div class="confirmPayButtonDiv">
-		<a href="foreorderConfirmed?oid=${o.id}"><button class="confirmPayButton">确认支付</button></a>
+		<a href="foreorderConfirmed?oid=${o.id}"><button class="confirmPayButton">支付</button></a>
 	</div>
 </div>

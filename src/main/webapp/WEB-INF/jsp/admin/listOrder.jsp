@@ -40,7 +40,7 @@
                     <tbody>
                     <c:forEach items="${os}" var="o">
                         <tr>
-                            <td align="center">${o.id}</td>
+                            <td align="center">${o.orderCode}</td>
                             <td align="center">${o.user.name}</td>
                             <td>￥<fmt:formatNumber type="number" value="${o.total}" minFractionDigits="2"/></td>
                             <td align="center">${o.totalNumber}</td>
@@ -50,8 +50,7 @@
                             <td><fmt:formatDate value="${o.confirmDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                             <td>${o.statusDesc}</td>
                             <td>
-                                <button oid=${o.id} class="orderPageCheckOrderItems btn btn-primary btn-xs
-                                ">查看详情</button>
+                                <button oid=${o.id} class="orderPageCheckOrderItems btn btn-primary btn-xs">查看详情</button>
 
                                 <c:if test="${o.status=='waitDelivery'}">
                                     <a href="admin_order_delivery?id=${o.id}">
@@ -98,7 +97,6 @@
                     </tbody>
                 </table>
             </div>
-            <!-- 中间主体内容部分 -->
             <div class="pageDiv">
                 <%@include file="../include/admin/adminPage.jsp" %>
             </div>

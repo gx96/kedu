@@ -56,15 +56,9 @@
 
 
 <div class="categoryWithCarousel">
-	<div style="position: relative;">
 		<%@include file="categoryMenu.jsp"%>
-	</div>
-
 	<%--<div style="position: relative;">--%>
 		<%--<%@include file="productsAsideCategorys.jsp"%>--%>
 	<%--</div>--%>
-	<div>
-		<%@include file="carousel.jsp"%>
-	</div>
-
+	<%@include file="carousel.jsp"%>
 </div>

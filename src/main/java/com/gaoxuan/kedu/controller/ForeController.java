@@ -60,18 +60,18 @@ public class ForeController {
         productService.fillByRow(cs);
         model.addAttribute("cs", cs);
         User user = (User) session.getAttribute("user");
+
         if (user != null) {
             List<Recommend> r = recommendService.get(user.getId());//先根据当前用户的id把该id的所有搜索记录查出来
+            if(r.size()==0){
+                return "fore/home";
+            }
             String[] str = new String[3];//放置搜索记录的数组，只查最近的3个
-            System.out.println(r.size());
             for (int i = 0; i < r.size(); i++) {
                 str[i] = r.get(i).getName();//添加搜索记录
-
             }
-            System.out.println(str.length);
             List<Product> rp = productService.selectByName(str);//放置根据搜索记录查询出来的商品
             Collections.shuffle(rp);//将大集合打乱
-            System.out.println(rp.size());
             for (int i = 0; i < str.length; i++) {
                 //设置product的图片，先根据id在productImage中找到对应的图片，再把第一张图片找到，并设置到product中。
                 rp.get(i).setFirstProductImage(productImageService.selectByPID(rp.get(i).getId()));
@@ -96,7 +96,12 @@ public class ForeController {
         }
         userService.add(user);
 
-        return "redirect:registerSuccessPage";
+        return "redirect:RegisterSuccess1";
+    }
+    @RequestMapping("RegisterSuccess1")
+    public String RegisterSuccess1(Model model, HttpSession session) {
+
+        return "fore/registerSuccess";
     }
 
     @RequestMapping("forelogin")
@@ -104,7 +109,6 @@ public class ForeController {
                         HttpSession session) {
         name = HtmlUtils.htmlEscape(name);
         User user = userService.get(name, password);
-
         if (null == user) {
             model.addAttribute("msg", "用户名或密码错误，请重新输入");
             return "fore/login";
@@ -245,7 +249,7 @@ public class ForeController {
     public String buy(Model model, String[] oiid, HttpSession session) {
         List<OrderItem> ois = new ArrayList<>();
         float total = 0;
-
+        System.out.println(oiid);
         for (String strid : oiid) {
             int id = Integer.parseInt(strid);
             OrderItem oi = orderItemService.get(id);
@@ -253,6 +257,28 @@ public class ForeController {
             ois.add(oi);
         }
 
+        session.setAttribute("ois", ois);
+        model.addAttribute("total", total);
+        return "fore/buy";
+    }
+    //支付中途中断，在我的订单中会调用这个，按订单号查询该订单中所有订单项
+    @RequestMapping("forebuyagain")
+    public String buyagain(Model model, int oid, float total,HttpSession session) {
+        System.out.println(oid);
+        System.out.println(total);
+        List<OrderItem> ois = orderItemService.listByOid(oid);
+        System.out.println(ois.size());
+//        for (OrderItem oi : ois) {
+//            OrderItem oi1=orderItemService.get(oi.getId());
+//            ois.add(oi1);
+//    }
+//        for(String strid:ois.)
+//        for (String strid : oiid) {
+//            int id = Integer.parseInt(strid);
+//            OrderItem oi = orderItemService.get(id);
+//            total += oi.getProduct().getPromotePrice() * oi.getNumber();
+//            ois.add(oi);
+//        }
         session.setAttribute("ois", ois);
         model.addAttribute("total", total);
         return "fore/buy";
@@ -326,6 +352,7 @@ public class ForeController {
     @ResponseBody
     public String createOrder(Model model, Order order, HttpSession session,HttpServletResponse response,HttpServletRequest request) {
         User user = (User) session.getAttribute("user");
+        System.out.println(user.getName());
         String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + RandomUtils.nextInt(10000);
         order.setOrderCode(orderCode);//订单号
         order.setCreateDate(new Date());
@@ -354,8 +381,6 @@ public class ForeController {
         try {
             result = alipayClient.pageExecute(alipayRequest).getBody();
             System.out.println(result);
-            System.out.println();
-            System.out.println();
             System.out.println();
             System.out.println(result);
         } catch (AlipayApiException e) {
@@ -436,7 +461,7 @@ public class ForeController {
         model.addAttribute("p", p);
         model.addAttribute("o", o);
         model.addAttribute("reviews", reviews);
-        return "fore/review";
+        return "fore/reviewSuccess";
     }
 
     @RequestMapping("foredoreview")
