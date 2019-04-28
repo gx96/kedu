@@ -9,11 +9,11 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li role="presentation">
-                    <a href="#">当前用户：<span class="badge">${sessionScope.admin.name}</span></a>
+                    <a href="#">当前用户：${sessionScope.admin.name}</a>
                 </li>
                 <li>
                     <a href="adminLoginPage">
-                        <span class="glyphicon glyphicon-lock"></span>退出登录</a>
+                        <span class="glyphicon glyphicon-off"></span>退出登录</a>
                 </li>
             </ul>
         </div>

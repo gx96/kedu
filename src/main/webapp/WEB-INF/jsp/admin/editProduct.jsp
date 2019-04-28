@@ -31,13 +31,14 @@
     <div class="pageContent">
         <div class="workingArea">
             <ol class="breadcrumb">
-                <li><a href="admin_category_list">返回</a></li>
-                <li><a href="admin_product_list?cid=${p.category.id}">${p.category.name}</a></li>
+                <%--<li><a href="admin_category_list">返回</a></li>--%>
+                <%--<li><a href="admin_product_list?cid=${p.category.id}">${p.category.name}</a></li>--%>
+                <li><a href="admin_product_list?cid=${p.category.id}">返回</a></li>
                 <%--<li class="active">${p.name}</li>--%>
                 <%--<li class="active">编辑产品</li>--%>
             </ol>
 
-            <div class="panel panel-warning editDiv">
+            <div class="panel panel-info editDiv">
                 <div class="panel-heading">编辑产品</div>
                 <div class="panel-body">
                     <form method="post" id="editForm" action="admin_product_update">

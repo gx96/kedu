@@ -49,7 +49,7 @@ $(function(){
 
         </tr>
     </table>    
-    <table class="categorySortBarTable">
+    <table class="categorySortBarTable" style="margin-left:20px">
         <tr>
         	<td>价格区间:</td>
             <td><input class="sortBarPrice beginPrice" type="text"></td>

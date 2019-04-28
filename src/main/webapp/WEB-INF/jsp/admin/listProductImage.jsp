@@ -27,8 +27,7 @@
     <%@include file="../include/admin/adminNavigatorleft.jsp" %>
     <!-- 正文内容部分 -->
     <div class="pageContent">
-        <div class="productWorkingArea">
-
+        <div class="productWorkingArea1">
             <table class="addPictureTable" align="center">
                 <tr>
                     <td colspan="2" class="addPictureTableTD1">
@@ -41,113 +40,87 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="addPictureTableTD">
-                        <div>
-                            <div class="panel panel-warning addPictureDiv">
-                                <div class="panel-heading">
-                                    商品实拍图片
-                                </div>
-                                <div class="panel-body">
-                                    <form method="post" class="addFormSingle"
-                                          action="admin_productImage_add" enctype="multipart/form-data">
-                                        <table class="addTable">
-                                            <tr>
-                                                <td><input id="filepathSingle" type="file" name="image"/>
-                                                </td>
-                                            </tr>
-                                            <tr class="submitTR">
-                                                <td align="center"><input type="hidden" name="type"
-                                                                          value="type_single"/> <input type="hidden"
-                                                                                                       name="pid"
-                                                                                                       value="${p.id}"/>
-                                                    <button type="submit" class="btn btn-success">提 交</button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </form>
-                                </div>
-                            </div>
-                            <table
-                                    class="table table-striped table-bordered table-hover  table-condensed">
-                                <thead>
-                                <tr class="success">
-                                    <%--<th>ID</th>--%>
-                                    <th>商品实拍图片</th>
-                                    <th>删除</th>
+                    <td>
+                        <table class=" table-striped table-bordered table-hover  table-condensed" style="width: 500px;">
+                            <form method="post" class="addFormSingle"
+                                  action="admin_productImage_add" enctype="multipart/form-data">
+                                <tr>
+                                    <td style="width: 100px">商品实拍图片</td>
+                                    <td><input id="filepathSingle" type="file" name="image"/></td>
+                                    <td align="center" width="80px">
+                                        <input type="hidden" name="type" value="type_single"/> <input
+                                            type="hidden" name="pid" value="${p.id}"/>
+                                        <button type="submit" class="btn ">提 交</button>
+                                    </td>
                                 </tr>
-                                </thead>
-                                <tbody>
+                            </form>
+                        </table>
+                        <table class=" table-striped table-bordered table-hover  table-condensed" style="width: 500px;">
+                            <tr>
+                                <td style=" width: 100px ">预览</td>
                                 <c:forEach items="${pisSingle}" var="pi">
-                                    <tr>
-                                        <%--<td>${pi.id}</td>--%>
-                                        <td><a title="点击查看原图"
-                                               href="img/productSingle/${pi.id}.jpg"><img height="50px"
-                                                                                          src="img/productSingle/${pi.id}.jpg"></a>
-                                        </td>
-                                        <td><a deleteLink="true"
-                                               href="admin_productImage_delete?id=${pi.id}"><span
-                                                class="     glyphicon glyphicon-trash"></span></a></td>
-
-                                    </tr>
+                                    <%--<td>${pi.id}</td>--%>
+                                    <td align="center">
+                                        <a title="点击查看原图" href="img/productSingle/${pi.id}.jpg">
+                                            <img height="60px" width="60px" src="img/productSingle/${pi.id}.jpg">
+                                        </a>
+                                    </td>
                                 </c:forEach>
-                                </tbody>
-                            </table>
-
-                        </div>
+                            </tr>
+                            <tr>
+                                <td style="width: 100px">删除</td>
+                                <c:forEach items="${pisSingle}" var="pi">
+                                    <td align="center">
+                                        <a deleteLink="true" href="admin_productImage_delete?id=${pi.id}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </c:forEach>
+                            </tr>
+                        </table>
                     </td>
-                    <td class="addPictureTableTD">
-                        <div>
-
-                            <div class="panel panel-warning addPictureDiv">
-                                <div class="panel-heading">
-                                    商品介绍图片
-                                </div>
-                                <div class="panel-body">
-                                    <form method="post" class="addFormDetail"
-                                          action="admin_productImage_add" enctype="multipart/form-data">
-                                        <table class="addTable">
-                                            <tr>
-                                                <td><input id="filepathDetail" type="file" name="image"/>
-                                                </td>
-                                            </tr>
-                                            <tr class="submitTR">
-                                                <td align="center"><input type="hidden" name="type"
-                                                                          value="type_detail"/> <input type="hidden"
-                                                                                                       name="pid"
-                                                                                                       value="${p.id}"/>
-                                                    <button type="submit" class="btn btn-success">提 交</button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </form>
-                                </div>
-                            </div>
-                            <table
-                                    class="table table-striped table-bordered table-hover  table-condensed">
-                                <thead>
-                                <tr class="success">
-                                    <%--<th>ID</th>--%>
-                                    <th>商品介绍图片</th>
-                                    <th>删除</th>
+                </tr>
+            </table>
+            <br/>
+            <table class="addPictureTable" align="center">
+                <tr>
+                    <td>
+                        <table class=" table-striped table-bordered table-hover  table-condensed" style="width: 500px;">
+                            <form method="post" class="addFormDetail" action="admin_productImage_add"
+                                  enctype="multipart/form-data">
+                                <tr>
+                                    <td style="width: 100px">商品介绍图片</td>
+                                    <td><input id="filepathDetail" type="file" name="image"/></td>
+                                    <td align="center" width="80px">
+                                        <input type="hidden" name="type" value="type_detail"/>
+                                        <input type="hidden" name="pid" value="${p.id}"/>
+                                        <button type="submit" class="btn">提 交</button>
+                                    </td>
                                 </tr>
-                                </thead>
-                                <tbody>
+                            </form>
+                        </table>
+                        <table class=" table-striped table-bordered table-hover  table-condensed" style="width: 500px;">
+                            <tr>
+                                <td style=" width: 100px ">预览</td>
                                 <c:forEach items="${pisDetail}" var="pi">
-                                    <tr>
-                                        <%--<td>${pi.id}</td>--%>
-                                        <td><a title="点击查看原图"
-                                               href="img/productDetail/${pi.id}.jpg"><img height="50px"
-                                                                                          src="img/productDetail/${pi.id}.jpg"></a>
-                                        </td>
-                                        <td><a deleteLink="true"
-                                               href="admin_productImage_delete?id=${pi.id}"><span
-                                                class="     glyphicon glyphicon-trash"></span></a></td>
-
-                                    </tr>
+                                    <td align="center">
+                                        <a title="点击查看原图" href="img/productDetail/${pi.id}.jpg">
+                                            <img height="60px" width="60px" src="img/productDetail/${pi.id}.jpg">
+                                        </a>
+                                    </td>
                                 </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
+                            </tr>
+                            <tr>
+                                <td style="width: 100px">删除</td>
+                                <c:forEach items="${pisDetail}" var="pi">
+                                    <td align="center">
+                                        <a deleteLink="true" href="admin_productImage_delete?id=${pi.id}">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </c:forEach>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </table>

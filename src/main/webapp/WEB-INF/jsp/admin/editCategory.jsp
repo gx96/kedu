@@ -14,12 +14,6 @@
             return true;
         });
     });
-    $(function () {
-        $("#li2").prop("class", "active");
-        $("#li1").prop("class", " ");
-        $("#li3").prop("class", " ");
-        $("#li4").prop("class", " ");
-    });
 </script>
 <div class="pageContainer">
     <!--左导航-->
@@ -27,8 +21,8 @@
     <!-- 正文内容部分 -->
     <div class="pageContent">
         <div class="workingArea">
-            <div class="panel panel-warning editDiv">
-                <ol class="breadcrumb">
+            <div class="panel panel-info editDiv">
+                <ol class="breadcrumb" >
                     <li><a href="admin_category_list">返回</a></li>
                     <%--<li class="active">编辑分类</li>--%>
                 </ol>

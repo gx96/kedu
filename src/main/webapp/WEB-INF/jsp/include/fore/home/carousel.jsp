@@ -17,17 +17,17 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="carousel carouselImage" src="img/carousel/1.jpg">
+            <img class="carousel carouselImage" height="400px" src="img/carousel/1.jpg">
         </div>
         <div class="item">
-            <img class="carouselImage" src="img/carousel/2.jpg">
+            <img class="carouselImage" height="400px" src="img/carousel/2.jpg">
         </div>
         <div class="item">
-            <img class="carouselImage" src="img/carousel/3.jpg">
+            <img class="carouselImage" height="400px" src="img/carousel/3.jpg">
         </div>
 
         <div class="item">
-            <img class="carouselImage" src="img/carousel/4.jpg">
+            <img class="carouselImage" height="400px" src="img/carousel/4.jpg">
         </div>
     </div>
     <%@include file="recommend.jsp"%>

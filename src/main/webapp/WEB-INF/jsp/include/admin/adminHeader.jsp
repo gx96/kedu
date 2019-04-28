@@ -1,5 +1,6 @@
 <!DOCTYPE html><!--表示本页面会使用html5的技术-->
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" isELIgnored="false" %>
 <%--contentType="text/html; charset=UTF-8" 告诉浏览器使用UTF-8进行中文编码识别--%>
 <%--pageEncoding="UTF-8" 本jsp上的中文文字，使用UTF-8进行编码--%>
 <%--isELIgnored="false" 本jsp上会使用EL表达式--%>

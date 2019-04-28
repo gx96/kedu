@@ -159,7 +159,7 @@
                     </span>
             </div>
         </div>
-        <div class="productSaleAndReviewNumber">
+        <div class="productReviewAndSale">
             <div>销量: <span class="redColor boldWord"> ${p.saleCount }</span></div>
             <div>评价:<span class="redColor boldWord"> ${p.reviewCount}</span></div>
         </div>

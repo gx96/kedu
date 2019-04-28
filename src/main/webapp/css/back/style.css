@@ -55,8 +55,13 @@ div.workingArea{
 	float:left;
 	width:700px;
 }
+div.productWorkingArea1{
+	margin:60px 200px;
+	float:left;
+	width:800px;
+}
 div.productWorkingArea{
-	margin:60px 100px;
+	margin:60px 70px;
 	float:left;
 	width:1200px;
 }
@@ -142,12 +147,12 @@ table.addPictureTable{
 	
 }
 td.addPictureTableTD{
-	padding:0px 100px;
+	padding:0px 0px;
 	text-align:center;	
 	vertical-align: top;
 }
 td.addPictureTableTD1{
-	padding:0px 100px;
+	padding:0px 0px;
 	text-align:left;	
 	vertical-align: top;
 }

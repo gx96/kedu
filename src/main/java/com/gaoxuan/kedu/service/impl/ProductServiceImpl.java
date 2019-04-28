@@ -106,6 +106,9 @@ public class ProductServiceImpl implements ProductService {
                 List<Product> productsOfEachRow =products.subList(i, size);
                 productsByRow.add(productsOfEachRow);
             }
+            for(Product p:products){
+                setSaleAndReviewNumber(p);
+            }
             c.setProductsByRow(productsByRow);
         }
     }
