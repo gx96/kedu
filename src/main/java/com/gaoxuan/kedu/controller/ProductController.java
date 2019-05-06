@@ -1,20 +1,20 @@
 package com.gaoxuan.kedu.controller;
 
-import java.util.Date;
-import java.util.List;
- 
+import com.gaoxuan.kedu.pojo.Category;
+import com.gaoxuan.kedu.pojo.Product;
+import com.gaoxuan.kedu.service.CategoryService;
+import com.gaoxuan.kedu.service.ProductImageService;
+import com.gaoxuan.kedu.service.ProductService;
+import com.gaoxuan.kedu.util.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
- 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.gaoxuan.kedu.pojo.Category;
-import com.gaoxuan.kedu.pojo.Product;
-import com.gaoxuan.kedu.service.CategoryService;
-import com.gaoxuan.kedu.service.ProductService;
-import com.gaoxuan.kedu.util.Page;
+
+import java.util.Date;
+import java.util.List;
  
 @Controller
 @RequestMapping("")
@@ -23,6 +23,8 @@ public class ProductController {
     CategoryService categoryService;
     @Autowired
     ProductService productService;
+    @Autowired
+    ProductImageService productImageService;
  
     @RequestMapping("admin_product_add")
     public String add(Model model, Product p) {
@@ -34,9 +36,12 @@ public class ProductController {
     @RequestMapping("admin_product_delete")
     public String delete(int id) {
         Product p = productService.get(id);
-        productService.delete(id);
-        return "redirect:admin_product_list?cid="+p.getCid();
-    }
+        if(productImageService.selectByPID(id)==null) {
+            productService.delete(id);
+            return "redirect:admin_product_list?cid=" + p.getCid();
+        }
+        return "redirect:admin_product_list?cid=" + p.getCid()+"&error=x";
+        }
  
     @RequestMapping("admin_product_edit")
     public String edit(Model model, int id) {
@@ -44,6 +49,8 @@ public class ProductController {
         Category c = categoryService.get(p.getCid());
         p.setCategory(c);
         model.addAttribute("p", p);
+
+
         return "admin/editProduct";
     }
  
@@ -69,5 +76,6 @@ public class ProductController {
         model.addAttribute("page", page);
  
         return "admin/listProduct";
+
     }
 }

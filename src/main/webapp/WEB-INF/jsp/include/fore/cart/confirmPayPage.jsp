@@ -52,6 +52,6 @@
 		
 	</div>
 	<div class="confirmPayButtonDiv">
-		<a href="foreorderConfirmed?oid=${o.id}"><button class="confirmPayButton">支付</button></a>
+		<a href="foreorderConfirmed?oid=${o.id}"><button class="confirmPayButton">确认</button></a>
 	</div>
 </div>

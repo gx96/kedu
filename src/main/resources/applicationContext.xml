@@ -9,8 +9,9 @@
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 	 http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">
-    <!-- 启动对服务注解的识别 -->
+    <!-- 使用注解的方式配置 -->
     <context:annotation-config/>
+    <!--扫描包-->
     <context:component-scan base-package="com.gaoxuan.kedu.service"/>
 
     <!-- 导入数据库配置文件,指定对jdbc.properties的引用 -->
@@ -49,8 +50,8 @@
 
     <!--Mybatis的SessionFactory配置-->
     <!-- 配置Mybatis的SessionFactory，其中声明了别名，并且使用前面配置的数据源，扫描CategoryMapper.xml配置文件 -->
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean"><!--声明别名-->
-        <property name="typeAliasesPackage" value="com.gaoxuan.kedu.pojo"/><!--配置别名，mapper.xml中就可以直接用类名，不加包名了-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="typeAliasesPackage" value="com.gaoxuan.kedu.pojo"/><!--配置别名，mapper.xml中就可以直接用别名，不区分大小写-->
         <property name="dataSource" ref="dataSource"/><!--配置源-->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/><!--扫描配置文件-->
         <!--分页插件，目前先注释，后面重构的时候才会使用-->
@@ -64,15 +65,16 @@
                 </bean>
             </array>
         </property>
-
     </bean>
+
 
     <!--Mybatis的Mapper文件识别,扫描Mapper类： CategoryMapper-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.gaoxuan.kedu.mapper"/>
     </bean>
-    <!--事务管理-->
+    <!--启动事务注解-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+    <!--配置事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>

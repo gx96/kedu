@@ -65,7 +65,7 @@ $(function(){
 		<div style=""></div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">密码：</label> <input id="password"
-				name="password" type="password" placeholder="设置你的登陆密码"
+				name="password" type="password" placeholder="设置你的登录密码"
 				class="form-control">
 				<span class="pw1ErrorMessage"></span>
 		</div>

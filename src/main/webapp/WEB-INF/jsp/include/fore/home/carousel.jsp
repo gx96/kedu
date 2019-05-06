@@ -7,8 +7,7 @@
      class="carousel-of-product carousel slide1" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#carousel-of-product" data-slide-to="0"
-            class="active"></li>
+        <li data-target="#carousel-of-product" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-of-product" data-slide-to="1"></li>
         <li data-target="#carousel-of-product" data-slide-to="2"></li>
         <li data-target="#carousel-of-product" data-slide-to="3"></li>
@@ -25,7 +24,6 @@
         <div class="item">
             <img class="carouselImage" height="400px" src="img/carousel/3.jpg">
         </div>
-
         <div class="item">
             <img class="carouselImage" height="400px" src="img/carousel/4.jpg">
         </div>

@@ -26,9 +26,9 @@
                     <thead>
                     <tr class="info">
                         <th>订单编号</th>
-                        <th width="100px">买家名称</th>
+                        <th width="70px">买家名称</th>
                         <th>总金额</th>
-                        <th width="100px">商品数量</th>
+                        <th width="70px">商品数量</th>
                         <th>创建时间</th>
                         <th>支付时间</th>
                         <th>发货时间</th>

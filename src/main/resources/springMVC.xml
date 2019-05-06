@@ -9,30 +9,39 @@
 
     <!--启动注解识别controller-->
     <context:annotation-config/>
-    <context:component-scan base-package="com.gaoxuan.kedu.controller">
+    <!--扫描controller包，对所有有@Controller的bean进行配置，这时可将Controller、service、dao包放在一个包下-->
+    <context:component-scan base-package="com.gaoxuan.kedu.controller" use-default-filters="false">
+        <!--表示只包含注解为@Controller的bean，有@Service注解的不扫描，不过需要在scan中加入use-default-filters="false"-->
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/><!--识别过滤器-->
     </context:component-scan>
+    <!--使用<mvc:annotation-driven/>可以在转发后，返回上一个RequestMapping映射的路径-->
     <mvc:annotation-driven/>
 
 
     <!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
-    <context:property-placeholder ignore-unresolvable="true" location=" classpath:weixinpay.properties"/>
+    <!--<context:property-placeholder ignore-unresolvable="true" location=" classpath:weixinpay.properties"/>-->
 
     <!--开通静态资源的访问，否则访问图片，css,js等文件可能出错-->
+    <!--检查请求或者资源有没有被mapping过，映射过就是请求，没映射过就是调用静态资源-->
     <mvc:default-servlet-handler/>
 
-    <!-- 视图定位 ，就可以只发送请求，不发送前缀后缀-->
+    <!-- 视图解析器，请求返回值回通过视图解析器解析为实际的物理视图，对于InternalResourceViewResolver视图解析器，会做如下解析：
+    prefix+return+suffix获取实际的物理视图（jsp页面路径），然后做转发操作。-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/jsp/"/><!--前缀-->
         <property name="suffix" value=".jsp"/><!--后缀-->
     </bean>
-
+    <!--配置自定义视图BeanNameViewResolver，使用视图的名字来解析视图-->
+    <!--<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">-->
+        <!--<property name="order" value="100"></property>-->
+    <!--</bean>-->
     <!-- 对上传文件的解析-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
     <!-- 登录拦截器 -->
     <mvc:interceptors>
         <mvc:interceptor>
+            <!--配置拦截器作用或不作用的路径：所有前缀是fore的，全部被拦截-->
             <mvc:mapping path="/fore*"/>
             <bean class="com.gaoxuan.kedu.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
@@ -41,4 +50,18 @@
             <bean class="com.gaoxuan.kedu.interceptor.OtherInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
+    <!--可以直接响应转发的页面，而不需要在经过handler（controller）的方法 -->
+    <!--<mvc:view-controller path="/success" view-name="admin/AdminLogin"/>-->
+    <!--使用这个可以在转发后，返回原来的路径-->
+    <!--<mvc:annotation-driven></mvc:annotation-driven>-->
+
+    <!--配置使用SimpleMappingExceptionResolver来映射异常-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionAttribute" value="ex"></property>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.ArrayIndexOutOfBoundsException">error</prop>
+            </props>
+        </property>
+    </bean>
 </beans>

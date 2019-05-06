@@ -7,20 +7,20 @@
 			<div>
 				<table class="addressTable">
 					<tr>
-						<td class="firstColumn">详细地址：</td>
-						<td><textarea name="address" placeholder="请填写收货地址。">陕西省宝鸡市渭滨区宝鸡文理学院</textarea></td>
+						<td>收货人姓名：</td>
+						<td><input name="receiver" placeholder="请填写收货人姓名" type="text" value="${address.name}"></td>
+					</tr>
+					<tr>
+						<td class="firstColumn">收货地址：</td>
+						<td><textarea name="address" placeholder="请填写详细地址。">${address.area}${address.address}</textarea></td>
 					</tr>
 					<tr>
 						<td>邮政编码：</td>
-						<td><input name="post" placeholder="721000" type="text"></td>
-					</tr>
-					<tr>
-						<td>姓名：</td>
-						<td><input name="receiver" placeholder="请填写收货人姓名" type="text" value="张三"></td>
+						<td><input name="post" placeholder="请填写邮政编码" type="text" value="${address.postal}"></td>
 					</tr>
 					<tr>
 						<td>手机号码：</td>
-						<td><input name="mobile" placeholder="请填写收货人手机号码" type="text" value="18829223388"></td>
+						<td><input name="mobile" placeholder="请填写收货人手机号码" type="text" value="${address.phone}"></td>
 					</tr>
 				</table>
 

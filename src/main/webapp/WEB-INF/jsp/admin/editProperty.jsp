@@ -4,13 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="../include/admin/adminHeader.jsp" %>
 <%@include file="../include/admin/adminNavigator.jsp" %>
-
-<script>
-    document.getElementById('li1').className = '';
-    document.getElementById('li2').className = 'active';
-    document.getElementById('li3').className = '';
-    document.getElementById('li4').className = '';
-</script>
 <title>编辑属性</title>
 <div class="pageContainer">
     <!--左导航-->

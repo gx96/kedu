@@ -4,16 +4,13 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
-import com.gaoxuan.kedu.util.AlipayConfig;
-import com.gaoxuan.kedu.util.IdWorker;
-import comparator.*;
 import com.gaoxuan.kedu.pojo.*;
 import com.gaoxuan.kedu.service.*;
+import com.gaoxuan.kedu.util.AlipayConfig;
 import com.github.pagehelper.PageHelper;
-
+import comparator.*;
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.HtmlUtils;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("")
@@ -53,6 +52,9 @@ public class ForeController {
     WeixinPayService weixinPayService;
     @Autowired
     AlipayService alipayService;
+    @Autowired
+    AddressService addressService;
+
     @RequestMapping("forehome")
     public String home(Model model, HttpSession session) {
         List<Category> cs = categoryService.list();
@@ -63,7 +65,7 @@ public class ForeController {
 
         if (user != null) {
             List<Recommend> r = recommendService.get(user.getId());//先根据当前用户的id把该id的所有搜索记录查出来
-            if(r.size()==0){
+            if (r.size() == 0) {
                 return "fore/home";
             }
             String[] str = new String[3];//放置搜索记录的数组，只查最近的3个
@@ -98,6 +100,7 @@ public class ForeController {
 
         return "redirect:RegisterSuccess1";
     }
+
     @RequestMapping("RegisterSuccess1")
     public String RegisterSuccess1(Model model, HttpSession session) {
 
@@ -249,7 +252,6 @@ public class ForeController {
     public String buy(Model model, String[] oiid, HttpSession session) {
         List<OrderItem> ois = new ArrayList<>();
         float total = 0;
-        System.out.println(oiid);
         for (String strid : oiid) {
             int id = Integer.parseInt(strid);
             OrderItem oi = orderItemService.get(id);
@@ -258,16 +260,24 @@ public class ForeController {
         }
 
         session.setAttribute("ois", ois);
+        //查找默认地址
+        User user=(User)session.getAttribute("user");
+        Address address=addressService.getByUid(user.getId());
+        model.addAttribute("address",address);
+
         model.addAttribute("total", total);
         return "fore/buy";
     }
+
     //支付中途中断，在我的订单中会调用这个，按订单号查询该订单中所有订单项
     @RequestMapping("forebuyagain")
-    public String buyagain(Model model, int oid, float total,HttpSession session) {
-        System.out.println(oid);
-        System.out.println(total);
+    public String buyagain(Model model, int oid, float total, HttpSession session) {
         List<OrderItem> ois = orderItemService.listByOid(oid);
-        System.out.println(ois.size());
+
+        //查找默认地址
+        User user=(User)session.getAttribute("user");
+        Address address=addressService.getByUid(user.getId());
+        model.addAttribute("address",address);
 //        for (OrderItem oi : ois) {
 //            OrderItem oi1=orderItemService.get(oi.getId());
 //            ois.add(oi1);
@@ -350,9 +360,8 @@ public class ForeController {
 
     @RequestMapping("forecreateOrder")
     @ResponseBody
-    public String createOrder(Model model, Order order, HttpSession session,HttpServletResponse response,HttpServletRequest request) {
+    public String createOrder(Model model, Order order, HttpSession session, HttpServletResponse response, HttpServletRequest request) {
         User user = (User) session.getAttribute("user");
-        System.out.println(user.getName());
         String orderCode = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + RandomUtils.nextInt(10000);
         order.setOrderCode(orderCode);//订单号
         order.setCreateDate(new Date());
@@ -369,8 +378,8 @@ public class ForeController {
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
-        String subject="kedu";//不能用中文
-        String total_fee = orderService.add(order, ois)+"";
+        String subject = "kedu";//不能用中文
+        String total_fee = orderService.add(order, ois) + "";
         alipayRequest.setBizContent("{\"out_trade_no\":\"" + orderCode + "\","
                 + "\"total_amount\":\"" + total_fee + "\","
                 + "\"subject\":\"" + subject + "\","
@@ -381,8 +390,6 @@ public class ForeController {
         try {
             result = alipayClient.pageExecute(alipayRequest).getBody();
             System.out.println(result);
-            System.out.println();
-            System.out.println(result);
         } catch (AlipayApiException e) {
             e.printStackTrace();
         }
@@ -391,23 +398,23 @@ public class ForeController {
 ////        return "redirect:forealipay?oid=" + order.getId() + "&total=" + total+"&valueurl="+map.get("code_url")+"&total_fee="+map.get("total_fee");
 //        return "redirect:forealipay?oid=" + order.getId() + "&total=" + total;
     }
-    @RequestMapping("forealipay")
-    public String alipay(Model model,HttpServletRequest request){
 
-        model.addAttribute("wechat",request.getAttribute("WeChat"));
+    @RequestMapping("forealipay")
+    public String alipay(Model model, HttpServletRequest request) {
+
+        model.addAttribute("wechat", request.getAttribute("WeChat"));
         return "fore/alipay";
     }
 
     @RequestMapping("forepayed")
 //    public String payed(int oid, float total, Model model) {
-    public String payed(String out_trade_no, Model model,String timestamp,String total_amount) {
-        Order order=orderService.getByid(out_trade_no);
+    public String payed(String out_trade_no, Model model, String timestamp, String total_amount) {
+        Order order = orderService.getByid(out_trade_no);
         order.setStatus(OrderService.waitDelivery);
         order.setPayDate(new Date());
         orderService.update(order);
-        System.out.println(order.getAddress());
         model.addAttribute("o", order);
-        model.addAttribute("total_amount",total_amount);
+        model.addAttribute("total_amount", total_amount);
 //        Order order = orderService.get(oid);
 //        order.setStatus(OrderService.waitDelivery);
 //        order.setPayDate(new Date());
@@ -483,4 +490,42 @@ public class ForeController {
 
         return "redirect:forereview?oid=" + oid + "&showonly=true";
     }
+
+    @RequestMapping("foreAddress")
+    public String foreAddress(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        List<Address> as = addressService.list(user.getId());
+        model.addAttribute("as", as);
+        return "fore/Address";
+    }
+
+    @RequestMapping("foreAddressDelete")
+    public String foreAddressDelete(int id) {
+        addressService.delete(id);
+        return "forward:foreAddress";
+    }
+
+    @RequestMapping("foreAddressUpdate")
+    public String foreAddressUpdate(Model model, HttpSession session, int id) {
+        Address address = addressService.getById(id);
+        model.addAttribute("addressUpdate", address);
+        return "forward:foreAddress";
+    }
+
+    @RequestMapping("foreAddressUpdateAfter")
+    public String foreAddressUpdateAfter(Model model, Address address) {
+        addressService.update(address);
+        model.addAttribute("addressUpdate",null);
+        return "redirect:foreAddress";
+    }
+
+    @RequestMapping("foreAddressDefault")
+    public String foreAddressDefault(Model model, int id,int uid) {
+        Address address=addressService.getById(id);
+        addressService.updateDefault(uid);
+        address.setStart(1);
+        addressService.update(address);
+        return "redirect:foreAddress";
+    }
+
 }

@@ -19,8 +19,8 @@
         <%--您可以--%>
         <%--<a class="payedCheckLink" href="forebought">查看已买到的宝贝</a>--%>
         <%--</div>--%>
-        <p>收货地址：${o.address}</p>
         <p>收货人：${o.receiver}</p>
+        <p>收货地址：${o.address}</p>
         <p>联系电话：${o.mobile}</p>
         <p>付款：<span class="payedInfoPrice">￥</span><fmt:formatNumber type="number" value="${total_amount}"
                                                                      minFractionDigits="2"/></p>

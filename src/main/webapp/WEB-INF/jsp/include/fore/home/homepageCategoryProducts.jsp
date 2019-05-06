@@ -35,9 +35,9 @@
                                 <span class="productSale">
                                 销量 <fmt:formatNumber type="number" value="${p.reviewCount }"/>
                             </span>
-                            <span class="productPrice">
-                                ￥<fmt:formatNumber type="number" value="${p.promotePrice}" minFractionDigits="2"/>
-                            </span>
+                            <span style="color: #FF003A;padding-left:5px;">￥<span class="productPrice">
+                                <fmt:formatNumber type="number" value="${p.promotePrice}" minFractionDigits="2"/>
+                            </span></span>
                         </div>
                     </c:if>
                 </c:forEach>

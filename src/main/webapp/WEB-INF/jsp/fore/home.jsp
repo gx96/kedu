@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 
 <%@include file="../include/fore/header.jsp"%>
+<div style="background-image: url(img/carousel/backgroundimage2.png);width: 100%;height: 160px;" >
 <%@include file="../include/fore/top.jsp"%>
 <%@include file="../include/fore/search.jsp"%>
+</div>
 <%@include file="../include/fore/home/homePage.jsp"%>
 <%@include file="../include/fore/footer.jsp"%>

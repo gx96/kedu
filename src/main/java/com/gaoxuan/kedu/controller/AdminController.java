@@ -5,7 +5,6 @@ import com.gaoxuan.kedu.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,7 +27,7 @@ public class AdminController {
             return "admin/adminLogin";
         }
         session.setAttribute("admin", admin);
-        return "redirect:admin_category_list?name=" + admin.getName();
+        return "forward:/admin_category_list";
     }
 
     @RequestMapping("adminLoginPage")

@@ -96,17 +96,10 @@
         <c:forEach items="${os}" var="o">
             <table class="orderListItemTable" orderStatus="${o.status}" oid="${o.id}">
                 <tr class="orderListItemFirstTR">
-                    <td colspan="2">
-                        <b><fmt:formatDate value="${o.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/></b>
-                        <span>订单号: ${o.orderCode}
+                    <td colspan="5">
+                            <%--<b><fmt:formatDate value="${o.createDate}" pattern="yyyy-MM-dd HH:mm:ss"/></b>--%>
+                        <span style="font-size: 15px;">支付日期：<fmt:formatDate value="${o.createDate}" pattern="yyyy-MM-dd"/></span><span style="font-size: 15px;display:inline-block;margin-left:250px;">订单号: ${o.orderCode}
                     </span>
-                    </td>
-                    <td colspan="2"></td>
-                    <td colspan="1">
-                        <a class="wangwanglink" href="#nowhere">
-                            <div class="orderItemWangWangGif"></div>
-                        </a>
-
                     </td>
                     <td class="orderItemDeleteTD">
                         <a class="deleteOrderLink" oid="${o.id}" href="#nowhere">
@@ -117,7 +110,7 @@
                 </tr>
                 <c:forEach items="${o.orderItems}" var="oi" varStatus="st">
                     <tr class="orderItemProductInfoPartTR">
-                        <td class="orderItemProductInfoPartTD">
+                        <td class="orderItemProductInfoPartTD" width="80px">
                             <img width="80" height="80"
                                  src="img/productSingle_middle/${oi.product.firstProductImage.id}.jpg">
                         </td>
@@ -130,12 +123,10 @@
                             <div class="">￥<fmt:formatNumber type="number" value="${oi.product.promotePrice}"
                                                              minFractionDigits="2"/></div>
                         </td>
+                        <td class="orderListItemNumberTD" width="100px">
+                            <span class="orderListItemNumber">${oi.number}</span>
+                        </td>
                         <c:if test="${st.count==1}">
-
-                            <td valign="top" rowspan="${fn:length(o.orderItems)}"
-                                class="orderListItemNumberTD orderItemOrderInfoPartTD" width="100px">
-                                <span class="orderListItemNumber">${o.totalNumber}</span>
-                            </td>
                             <td valign="top" rowspan="${fn:length(o.orderItems)}" width="120px"
                                 class="orderListItemProductRealPriceTD orderItemOrderInfoPartTD">
                                 <div class="">￥<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2"

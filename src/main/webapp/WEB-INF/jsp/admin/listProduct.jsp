@@ -21,6 +21,13 @@
             return true;
         });
     });
+    window.onload = function () {
+        var s = "${param.error}";<%-- 必须带""--%>
+        if (s !== "") {
+            s="删除失败";
+            alert(s);
+        }
+    };
 </script>
 <title>商品管理</title>
 <div class="pageContainer">
@@ -90,7 +97,7 @@
                     <tr>
                         <th>增加商品</th>
                         <td>名称：<input type="text" id="name" name="name" ></td>
-                        <td>名称：<input type="text" id="subTitle" name="subTitle" ></td>
+                        <td>小标题：<input type="text" id="subTitle" name="subTitle" ></td>
                         <td>原价格：<input type="text" id="originalPrice" name="originalPrice" ></td>
                         <td>优惠价格：<input type="text" id="promotePrice" name="promotePrice" ></td>
                         <td>库存：<input type="text" id="stock" name="stock" ></td>
@@ -101,48 +108,6 @@
                     </tr>
                 </table>
             </form>
-            <%--<div class="panel panel-warning addDiv">--%>
-                <%--<div class="panel-heading" style="background-color: #d1eeee">--%>
-                    <%--<font color="black">增加产品：</font>--%>
-                <%--</div>--%>
-                <%--<div class="panel-body">--%>
-                    <%--<form method="post" id="addForm" action="admin_product_add">--%>
-                        <%--<table class="addTable">--%>
-                            <%--<tr>--%>
-                                <%--<td>商品名称</td>--%>
-                                <%--<td><input id="name" name="name" type="text"--%>
-                                           <%--class="form-control"></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td>商品小标题</td>--%>
-                                <%--<td><input id="subTitle" name="subTitle" type="text"--%>
-                                           <%--class="form-control"></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td>原价格</td>--%>
-                                <%--<td><input id="originalPrice"--%>
-                                           <%--name="originalPrice" type="text" class="form-control"></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td>优惠价格</td>--%>
-                                <%--<td><input id="promotePrice"--%>
-                                           <%--name="promotePrice" type="text" class="form-control"></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td>库存</td>--%>
-                                <%--<td><input id="stock" name="stock" type="text"--%>
-                                           <%--class="form-control"></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr class="submitTR">--%>
-                                <%--<td colspan="2" align="center">--%>
-                                    <%--<input type="hidden" name="cid" value="${c.id}">--%>
-                                    <%--<button type="submit" class="btn btn-success">提 交</button>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-                        <%--</table>--%>
-                    <%--</form>--%>
-                <%--</div>--%>
-            <%--</div>--%>
         </div>
     </div>
 </div>

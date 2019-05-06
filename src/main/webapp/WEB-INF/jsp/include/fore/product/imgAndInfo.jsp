@@ -47,7 +47,7 @@
                                 if ("success" == result) {
                                     $(".addCartButton").html("已加入购物车");
                                     $(".addCartButton").attr("disabled", "disabled");
-                                    $(".addCartButton").css("color", "#c40000")
+                                    $(".addCartButton").css("color", "black")
 
                                 }
                                 else {
@@ -159,7 +159,7 @@
                     </span>
             </div>
         </div>
-        <div class="productReviewAndSale">
+        <div class="productSaleAndReviewNumber">
             <div>销量: <span class="redColor boldWord"> ${p.saleCount }</span></div>
             <div>评价:<span class="redColor boldWord"> ${p.reviewCount}</span></div>
         </div>

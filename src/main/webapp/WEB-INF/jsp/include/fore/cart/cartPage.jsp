@@ -208,6 +208,8 @@ function syncPrice(pid,num,price){
             <thead>
                 <tr>
                     <th class="selectAndImage">
+                        <img selectit="false" class="selectAllItem" src="img/site/cartNotSelected.png">
+                        <span>全选</span>
                     </th>
                     <th>商品信息</th>
                     <th>单价</th>
@@ -259,20 +261,19 @@ function syncPrice(pid,num,price){
          
         </table>
     </div>
-     
-    <div class="cartFoot">
-        <img selectit="false" class="selectAllItem" src="img/site/cartNotSelected.png">
-        <span>全选</span>
+    <div style="text-align: center;margin: 10px;"> <button class="createOrderButton" disabled="disabled" >结 算</button></div>
+
+    <%--<div class="cartFoot">--%>
+        <%--<img selectit="false" class="selectAllItem" src="img/site/cartNotSelected.png">--%>
+        <%--<span>全选</span>--%>
 <!--         <a href="#">删除</a> -->
-         
-        <div class="pull-right">
-            <span>已选商品 <span class="cartSumNumber" >0</span> 件</span>
-             
-            <span>合计: </span>
-            <span class="cartSumPrice" >￥0.00</span>
-            <button class="createOrderButton" disabled="disabled" >结  算</button>
-        </div>
-         
-    </div>
-     
+
+        <%--<div class="pull-right">--%>
+            <%--<span>已选商品 <span class="cartSumNumber" >0</span> 件</span>--%>
+             <%----%>
+            <%--<span>合计: </span>--%>
+            <%--<span class="cartSumPrice" >￥0.00</span>--%>
+            <%--<button class="createOrderButton" disabled="disabled" >付款</button>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 </div>
