@@ -11,10 +11,13 @@
 <%--使用c和fmt两种标准标签库--%>
 <html>
 <head>
+
+	<link href="img/site/favicon.ico" rel="shortcut icon" />
     <script src="js/jquery/2.0.0/jquery.min.js"></script><!--通过在springMVC中的配置，将静态资源路径映射到webapp目录下-->
     <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link href="css/back/style.css" rel="stylesheet">
+	<script src="js/highcharts/highcharts.js"></script>
     <script>
         function checkEmpty(id, name) {
             var value = $("#" + id).val();

@@ -2,6 +2,14 @@
 <%@ taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script>
     $(function () {
+        <%--<a class="buyLink" href="forebuyone?pid=${p.id}">--%>
+        <%--<button class="buyButton">立即购买</button>--%>
+        <%--</a>--%>
+        //如果库存为0就删除立即购买和进入购物车，添加已售罄
+        <c:if test="${stockFlag!=null}">
+        $(".buyLink").remove();
+        $(".addCartLink").replaceWith("<button class=\"productSellOut\" disabled=\"disabled\">已售罄</button>");
+        </c:if>
         var stock = ${p.stock};
         $(".productNumberSetting").keyup(function () {
             var num = $(".productNumberSetting").val();
@@ -47,8 +55,7 @@
                                 if ("success" == result) {
                                     $(".addCartButton").html("已加入购物车");
                                     $(".addCartButton").attr("disabled", "disabled");
-                                    $(".addCartButton").css("color", "black")
-
+                                    $(".addCartButton").css("color", "black").css("border-color","black");
                                 }
                                 else {
 
@@ -127,45 +134,43 @@
             }
         );
     });
-
 </script>
-
 <div class="imgAndInfo">
 
-    <div class="imgInimgAndInfo">
-        <img src="img/productSingle/${p.firstProductImage.id}.jpg" class="bigImg">
-        <div class="smallImageDiv">
-            <c:forEach items="${p.productSingleImages}" var="pi">
-                <img src="img/productSingle_small/${pi.id}.jpg" bigImageURL="img/productSingle/${pi.id}.jpg"
-                     class="smallImage">
-            </c:forEach>
-        </div>
-        <div class="img4load hidden"></div>
-    </div>
-    <div class="infoInimgAndInfo">
+	<div class="imgInimgAndInfo">
+		<img src="img/productSingle/${p.firstProductImage.id}.jpg" class="bigImg">
+		<div class="smallImageDiv">
+			<c:forEach items="${p.productSingleImages}" var="pi">
+				<img src="img/productSingle_small/${pi.id}.jpg" bigImageURL="img/productSingle/${pi.id}.jpg"
+					 class="smallImage">
+			</c:forEach>
+		</div>
+		<div class="img4load hidden"></div>
+	</div>
+	<div class="infoInimgAndInfo">
 
-        <div class="productTitle">
-            ${p.name}
-        </div>
-        <%--<div class="productSubTitle">--%>
-        <%--${p.subTitle} --%>
-        <%--</div>--%>
-        <div class="productPriceDiv">
-            <div class="promotionDiv">
-                <span>价格： </span>
-                <span class="promotionPriceYuan">¥</span>
-                <span class="promotionPrice">
+		<div class="productTitle">
+			${p.name}
+		</div>
+		<%--<div class="productSubTitle">--%>
+		<%--${p.subTitle} --%>
+		<%--</div>--%>
+		<div class="productPriceDiv">
+			<div class="promotionDiv">
+				<span>价格： </span>
+				<span class="promotionPriceYuan">¥</span>
+				<span class="promotionPrice">
                         <fmt:formatNumber type="number" value="${p.promotePrice}" minFractionDigits="2"/>
                     </span>
-            </div>
-        </div>
-        <div class="productSaleAndReviewNumber">
-            <div>销量: <span class="redColor boldWord"> ${p.saleCount }</span></div>
-            <div>评价:<span class="redColor boldWord"> ${p.reviewCount}</span></div>
-        </div>
-        <div class="productNumber">
-            <span>数量</span>
-            <span>
+			</div>
+		</div>
+		<div class="productSaleAndReviewNumber">
+			<div>销量: <span class="redColor boldWord"> ${p.saleCount }</span></div>
+			<div>评价:<span class="redColor boldWord"> ${p.reviewCount}</span></div>
+		</div>
+		<div class="productNumber">
+			<span>数量</span>
+			<span>
                 <span class="productNumberSettingSpan">
                 <input class="productNumberSetting" type="text" value="1">
                 </span>
@@ -182,22 +187,20 @@
                             <img src="img/site/decrease.png">
                     </span>
                     </a>
-                     
-                </span>
-                     
-            件</span>
-            <span>剩余${p.stock}件</span>
-        </div>
-        <div class="buyDiv">
-            <a class="buyLink" href="forebuyone?pid=${p.id}">
-                <button class="buyButton">立即购买</button>
-            </a>
-            <a href="" class="addCartLink">
-                <button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button>
-            </a>
-        </div>
-    </div>
+                </span>件
+			</span>
+			<span>剩余${p.stock}件</span>
+		</div>
+		<div class="buyDiv">
+			<a class="buyLink" href="forebuyone?pid=${p.id}">
+				<button class="buyButton">立即购买</button>
+			</a>
+			<a href="" class="addCartLink">
+				<button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button>
+			</a>
+		</div>
+	</div>
 
-    <div style="clear:both"></div>
+	<div style="clear:both"></div>
 
 </div>

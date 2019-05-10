@@ -1,14 +1,15 @@
 package com.gaoxuan.kedu.service.impl;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.gaoxuan.kedu.mapper.ReviewMapper;
 import com.gaoxuan.kedu.pojo.Review;
 import com.gaoxuan.kedu.pojo.ReviewExample;
 import com.gaoxuan.kedu.pojo.User;
 import com.gaoxuan.kedu.service.ReviewService;
 import com.gaoxuan.kedu.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
   
 @Service
 public class ReviewServiceImpl implements ReviewService {
@@ -40,7 +41,7 @@ public class ReviewServiceImpl implements ReviewService {
     public List<Review> list(int pid){
         ReviewExample example =new ReviewExample();
         example.createCriteria().andPidEqualTo(pid);
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
   
         List<Review> result =reviewMapper.selectByExample(example);
         setUser(result);

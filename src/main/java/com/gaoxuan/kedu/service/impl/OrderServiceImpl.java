@@ -1,12 +1,5 @@
 package com.gaoxuan.kedu.service.impl;
 
-import java.util.List;
- 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.gaoxuan.kedu.mapper.OrderMapper;
 import com.gaoxuan.kedu.pojo.Order;
 import com.gaoxuan.kedu.pojo.OrderExample;
@@ -15,6 +8,12 @@ import com.gaoxuan.kedu.pojo.User;
 import com.gaoxuan.kedu.service.OrderItemService;
 import com.gaoxuan.kedu.service.OrderService;
 import com.gaoxuan.kedu.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
  
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -53,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
 
     public List<Order> list(){
         OrderExample example =new OrderExample();
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
         List<Order> result =orderMapper.selectByExample(example);
         setUser(result);
         return result;

@@ -139,11 +139,11 @@ function syncCreateOrderButton(){
     });
      
     if(selectAny){
-        $("button.createOrderButton").css("background-color","#C40000");
+        $("button.createOrderButton").css("background-color","deepskyblue").css("color","white");
         $("button.createOrderButton").removeAttr("disabled");
     }
     else{
-        $("button.createOrderButton").css("background-color","#AAAAAA");
+        $("button.createOrderButton").css("background-color","#e2e2e2").css("color","black");
         $("button.createOrderButton").attr("disabled","disabled");     
     }
          
@@ -262,18 +262,4 @@ function syncPrice(pid,num,price){
         </table>
     </div>
     <div style="text-align: center;margin: 10px;"> <button class="createOrderButton" disabled="disabled" >结 算</button></div>
-
-    <%--<div class="cartFoot">--%>
-        <%--<img selectit="false" class="selectAllItem" src="img/site/cartNotSelected.png">--%>
-        <%--<span>全选</span>--%>
-<!--         <a href="#">删除</a> -->
-
-        <%--<div class="pull-right">--%>
-            <%--<span>已选商品 <span class="cartSumNumber" >0</span> 件</span>--%>
-             <%----%>
-            <%--<span>合计: </span>--%>
-            <%--<span class="cartSumPrice" >￥0.00</span>--%>
-            <%--<button class="createOrderButton" disabled="disabled" >付款</button>--%>
-        <%--</div>--%>
-    <%--</div>--%>
 </div>

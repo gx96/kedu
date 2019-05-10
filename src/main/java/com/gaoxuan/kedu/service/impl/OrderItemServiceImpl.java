@@ -1,10 +1,5 @@
 package com.gaoxuan.kedu.service.impl;
 
-import java.util.List;
- 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
- 
 import com.gaoxuan.kedu.mapper.OrderItemMapper;
 import com.gaoxuan.kedu.pojo.Order;
 import com.gaoxuan.kedu.pojo.OrderItem;
@@ -12,6 +7,10 @@ import com.gaoxuan.kedu.pojo.OrderItemExample;
 import com.gaoxuan.kedu.pojo.Product;
 import com.gaoxuan.kedu.service.OrderItemService;
 import com.gaoxuan.kedu.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
  
 @Service
 public class OrderItemServiceImpl implements OrderItemService {
@@ -44,7 +43,7 @@ public class OrderItemServiceImpl implements OrderItemService {
  
     public List<OrderItem> list(){
         OrderItemExample example =new OrderItemExample();
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
         return orderItemMapper.selectByExample(example);
  
     }
@@ -59,7 +58,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     public void fill(Order o) {
         OrderItemExample example =new OrderItemExample();
         example.createCriteria().andOidEqualTo(o.getId());
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
         List<OrderItem> ois =orderItemMapper.selectByExample(example);
         setProduct(ois);
  

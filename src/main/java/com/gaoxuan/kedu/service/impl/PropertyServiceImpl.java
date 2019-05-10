@@ -1,15 +1,12 @@
 package com.gaoxuan.kedu.service.impl;
 
 import com.gaoxuan.kedu.mapper.PropertyMapper;
-import com.gaoxuan.kedu.pojo.Category;
-import com.gaoxuan.kedu.pojo.Product;
 import com.gaoxuan.kedu.pojo.Property;
 import com.gaoxuan.kedu.pojo.PropertyExample;
-import com.gaoxuan.kedu.service.CategoryService;
 import com.gaoxuan.kedu.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
- 
+
 import java.util.List;
  
 @Service
@@ -41,7 +38,7 @@ public class PropertyServiceImpl implements PropertyService {
     public List list(int cid) {
         PropertyExample example =new PropertyExample();
         example.createCriteria().andCidEqualTo(cid);
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
         return propertyMapper.selectByExample(example);
     }
  

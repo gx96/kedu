@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
  
-<title> ${p.name}</title>
+<title>商品查看</title>
 <div class="productPageDiv">
  
     <%@include file="imgAndInfo.jsp" %>

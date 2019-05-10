@@ -48,8 +48,8 @@
                                     <td style="width: 100px">商品实拍图片</td>
                                     <td><input id="filepathSingle" type="file" name="image"/></td>
                                     <td align="center" width="80px">
-                                        <input type="hidden" name="type" value="type_single"/> <input
-                                            type="hidden" name="pid" value="${p.id}"/>
+                                        <input type="hidden" name="type" value="type_single"/>
+										<input type="hidden" name="pid" value="${p.id}"/>
                                         <button type="submit" class="btn ">提 交</button>
                                     </td>
                                 </tr>

@@ -1,14 +1,13 @@
 package com.gaoxuan.kedu.service.impl;
 
-import java.util.List;
- 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
- 
 import com.gaoxuan.kedu.mapper.UserMapper;
 import com.gaoxuan.kedu.pojo.User;
 import com.gaoxuan.kedu.pojo.UserExample;
 import com.gaoxuan.kedu.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
  
 @Service
 public class UserServiceImpl implements UserService {
@@ -37,7 +36,7 @@ public class UserServiceImpl implements UserService {
  
     public List<User> list(){
         UserExample example =new UserExample();
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
         return userMapper.selectByExample(example);
  
     }

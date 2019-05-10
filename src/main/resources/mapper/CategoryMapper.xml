@@ -68,14 +68,15 @@
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from category
     where id = #{id,jdbcType=INTEGER}
-  </delete>
+    </delete>
     <!--insert表示是一个增加语句，使用 keyProperty="id"表示数据库中自动增长的id值返回给实体类对象的属性"id"，
-    useGeneratedKeys="true"保证数据插入数据库时id会自动增加，keyColumn表示指定数据库中自动增加的字段名是哪个，如果数据库中已经设置好，则可以删掉-->
+    useGeneratedKeys="true"保证数据插入数据库时id会自动增加，keyColumn表示指定数据库中自动增加的字段名是哪个，
+    如果数据库中已经设置好，则可以删掉-->
     <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true"
             parameterType="com.gaoxuan.kedu.pojo.Category">
     insert into category (name)
     values (#{name,jdbcType=VARCHAR})
-  </insert>
+    </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.gaoxuan.kedu.pojo.Category"
             useGeneratedKeys="true">
         insert into category

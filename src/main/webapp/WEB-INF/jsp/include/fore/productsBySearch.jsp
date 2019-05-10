@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix='fmt' %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<title>搜索</title>
 <div class="searchProducts">
-
     <c:forEach items="${ps}" var="p">
     <div class="productUnit" price="${p.promotePrice}">
         <a href="foreproduct?pid=${p.id}">

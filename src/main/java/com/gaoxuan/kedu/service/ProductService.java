@@ -1,9 +1,9 @@
 package com.gaoxuan.kedu.service;
 
-import java.util.List;
-
 import com.gaoxuan.kedu.pojo.Category;
 import com.gaoxuan.kedu.pojo.Product;
+
+import java.util.List;
  
 public interface ProductService {
     void add(Product p);

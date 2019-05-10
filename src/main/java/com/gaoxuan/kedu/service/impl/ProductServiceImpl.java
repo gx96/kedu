@@ -66,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
     public List list(int cid) {
         ProductExample example = new ProductExample();
         example.createCriteria().andCidEqualTo(cid);
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
         List result = productMapper.selectByExample(example);
         setCategory(result);
         setFirstProductImage(result);
@@ -137,7 +137,7 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> search(String keyword) {
         ProductExample example = new ProductExample();
         example.createCriteria().andNameLike("%" + keyword + "%");
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
         List result = productMapper.selectByExample(example);
         setFirstProductImage(result);
         System.out.println(result.size());
@@ -146,6 +146,6 @@ public class ProductServiceImpl implements ProductService {
     }
     @Override
    public List<Product> selectByName(String[] name){
-    return productMapper.selectByName(name);
+		return productMapper.selectByName(name);
     }
 }

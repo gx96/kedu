@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+<title>订单信息</title>
 <div class="buyPageDiv">
-	<form action="forecreateOrder" method="post">
+	<form action="forecreateOrder?orderCode=${orderCode}" method="post">
 		<div class="address">
 			<div class="addressTip">收货人信息：</div>
 			<div>

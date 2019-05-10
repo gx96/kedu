@@ -76,7 +76,7 @@ div.workingAreaOrder{
 }
 div.addDiv{
 	width:400px;
-	margin:50px 200px 30px 0px;
+	margin:50px 200px 30px 0;
 	float:right;
 }
 div.editDiv{
@@ -138,7 +138,7 @@ span.pvValue{
 	border:1px solid lightgray;
 }
 span.pvValue input{
-	border-width:0px;
+	border-width:0;
 }
 div.addPictureDiv{
 	width:400px;
@@ -147,12 +147,12 @@ table.addPictureTable{
 	
 }
 td.addPictureTableTD{
-	padding:0px 0px;
+	padding:0 0;
 	text-align:center;	
 	vertical-align: top;
 }
 td.addPictureTableTD1{
-	padding:0px 0px;
+	padding:0 0;
 	text-align:left;	
 	vertical-align: top;
 }

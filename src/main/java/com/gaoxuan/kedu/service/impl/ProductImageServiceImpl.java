@@ -1,15 +1,13 @@
 package com.gaoxuan.kedu.service.impl;
 
-import java.util.List;
-
-import com.gaoxuan.kedu.pojo.Product;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
- 
 import com.gaoxuan.kedu.mapper.ProductImageMapper;
 import com.gaoxuan.kedu.pojo.ProductImage;
 import com.gaoxuan.kedu.pojo.ProductImageExample;
 import com.gaoxuan.kedu.service.ProductImageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
  
 @Service
 public class ProductImageServiceImpl implements ProductImageService {
@@ -43,7 +41,7 @@ public class ProductImageServiceImpl implements ProductImageService {
         ProductImageExample.Criteria criteria = example.createCriteria()
                 .andPidEqualTo(pid)
                 .andTypeEqualTo(type);
-        example.setOrderByClause("id desc");
+        example.setOrderByClause("id asc");
         return productImageMapper.selectByExample(example);
     }
     @Override

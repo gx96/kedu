@@ -36,6 +36,7 @@
 	line-height: 10px;
 	}
 </style>
+<title>登录</title>
 <div class="login1">
 	<a href="forehome"><img alt="" src="img/site/logo3.jpg"></a><font size="5">欢迎登录</font>
 </div>
