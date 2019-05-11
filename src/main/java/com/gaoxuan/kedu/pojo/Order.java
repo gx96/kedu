@@ -171,7 +171,7 @@ public class Order {
                 desc="待收货";
                 break;
             case OrderService.waitReview:
-                desc="等评价";
+                desc="待评价";
                 break;
             case OrderService.finish:
                 desc="完成";

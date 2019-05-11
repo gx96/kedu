@@ -229,4 +229,10 @@
       status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+<select id="selectByMonth" resultType="com.gaoxuan.kedu.pojo.Order">
+    SELECT * FROM order_ where confirmDate BETWEEN concat('2019-',#{month},'-01') and concat('2019-',#{month},'-31')
+</select>
+    <select id="selectByDate" resultType="com.gaoxuan.kedu.pojo.Order">
+        select * from order_ where createDate between #{0} and DATE_ADD(#{1},INTERVAL 1 DAY)
+    </select>
 </mapper>

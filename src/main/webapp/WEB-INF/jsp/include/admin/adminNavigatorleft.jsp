@@ -12,6 +12,9 @@
         <li role="presentation">
             <a href="admin_order_list"><span class="glyphicon glyphicon-list-alt"></span>  订单管理</a>
         </li>
+		<%--<li role="presentation">--%>
+			<%--<a href="admin_statistics_list"><span class="glyphicon glyphicon-list-alt"></span>  销售统计</a>--%>
+		<%--</li>--%>
     </ul>
 </div>
 

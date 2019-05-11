@@ -19,4 +19,9 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+
+	//按月查出所有已支付订单
+	List<Order> selectByMonth(Integer month);
+
+	List<Order> selectByDate(String startDate,String endDate);
 }

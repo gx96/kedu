@@ -7,6 +7,7 @@ import com.gaoxuan.kedu.pojo.OrderItemExample;
 import com.gaoxuan.kedu.pojo.Product;
 import com.gaoxuan.kedu.service.OrderItemService;
 import com.gaoxuan.kedu.service.ProductService;
+import com.gaoxuan.kedu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ public class OrderItemServiceImpl implements OrderItemService {
     OrderItemMapper orderItemMapper;
     @Autowired
     ProductService productService;
+    @Autowired
+	UserService userService;
  
     @Override
     public void add(OrderItem c) {
@@ -52,6 +55,7 @@ public class OrderItemServiceImpl implements OrderItemService {
     public void fill(List<Order> os) {
         for (Order o : os) {
             fill(o);
+			o.setUser(userService.get(o.getUid()));
         }
     }
  
@@ -116,4 +120,8 @@ public class OrderItemServiceImpl implements OrderItemService {
         setProduct(result);
         return result;
     }
+    @Override
+	public List listByMonth(int month){
+    	return orderItemMapper.selectByMonth(month);
+	}
 }

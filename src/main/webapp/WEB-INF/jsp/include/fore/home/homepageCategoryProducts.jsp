@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix='fmt' %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:if test="${empty param.categorycount}">
-    <c:set var="categorycount" scope="page" value="100"/>
+    <c:set var="categorycount" scope="page" value="5"/>
 </c:if>
 
 <c:if test="${!empty param.categorycount}">
@@ -30,10 +30,10 @@
                                 </span>
                             </a>
                             <span class="productReview">
-                                评价 <fmt:formatNumber type="number" value="${p.saleCount }"/>
+                                评价 <fmt:formatNumber type="number" value="${p.reviewCount }"/>
                             </span>
                                 <span class="productSale">
-                                销量 <fmt:formatNumber type="number" value="${p.reviewCount }"/>
+                                销量 <fmt:formatNumber type="number" value="${p.saleCount }"/>
                             </span>
                             <span style="color: #FF003A;padding-left:5px;">￥<span class="productPrice">
                                 <fmt:formatNumber type="number" value="${p.promotePrice}" minFractionDigits="2"/>

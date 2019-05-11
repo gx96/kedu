@@ -1,9 +1,9 @@
 package com.gaoxuan.kedu.service;
 
-import java.util.List;
- 
 import com.gaoxuan.kedu.pojo.Order;
 import com.gaoxuan.kedu.pojo.OrderItem;
+
+import java.util.List;
  
 public interface OrderItemService {
       
@@ -13,7 +13,9 @@ public interface OrderItemService {
     void update(OrderItem c);
     OrderItem get(int id);
     List list();
- 
+
+    //按月查出所有已支付订单
+ 	List listByMonth(int month);
     void fill(List<Order> os);
  
     void fill(Order o);

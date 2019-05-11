@@ -28,7 +28,6 @@ public class CategoryController {
             CategoryService categoryService;
     @Autowired
     ProductService productService;
-
     @RequestMapping("admin_category_list")//注解RequestMapping("admin_category_list")映射admin_category_list路径的访问
     public String list(Model model, Page page, String name) {//Page用于获取浏览器传递过来的分页信息
         PageHelper.offsetPage(page.getStart(), page.getCount());//1. 通过分页插件指定分页参数
@@ -39,7 +38,6 @@ public class CategoryController {
         model.addAttribute("page", page);
         return "admin/listCategory";//服务端转跳到“admin/listCategory"视图
     }
-
     //1. add方法映射路径admin_category_add的访问
 //1.1 参数 Category c接受页面提交的分类名称
 //1.2 参数 session 用于在后续获取当前应用的路径

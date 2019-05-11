@@ -20,4 +20,6 @@ public interface OrderItemMapper {
 
     int updateByPrimaryKey(OrderItem record);
 
+	//按月查出所有已支付订单
+	List<OrderItem> selectByMonth(Integer month);
 }

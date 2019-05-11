@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
 
     public List<Order> list(){
         OrderExample example =new OrderExample();
-        example.setOrderByClause("id asc");
+        example.setOrderByClause("id desc");
         List<Order> result =orderMapper.selectByExample(example);
         setUser(result);
         return result;
@@ -89,4 +89,14 @@ public class OrderServiceImpl implements OrderService {
         example.setOrderByClause("id desc");
         return orderMapper.selectByExample(example);
     }
+
+	@Override
+	public List listByMonth(int month) {
+		return orderMapper.selectByMonth(month);
+	}
+
+	@Override
+	public List list(String startDate, String endDate){
+    	return orderMapper.selectByDate(startDate,endDate);
+	}
 }

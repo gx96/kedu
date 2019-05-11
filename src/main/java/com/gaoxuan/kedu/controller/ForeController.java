@@ -51,7 +51,6 @@ public class ForeController {
 	AlipayService alipayService;
 	@Autowired
 	AddressService addressService;
-
 	@RequestMapping("forehome")
 	public String home(Model model, HttpSession session) {
 		List<Category> cs = categoryService.list();
@@ -85,7 +84,6 @@ public class ForeController {
 				productList.addAll(productService.list(integer));
 			}
 			Collections.shuffle(productList);
-
 			for (int i = 0; i < str.length; i++) {
 				//设置product的图片，先根据id在productImage中找到对应的图片，再把第一张图片找到，并设置到product中。
 				productList.get(i).setFirstProductImage(productImageService.selectByPID(productList.get(i).getId()));

@@ -18,7 +18,13 @@
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link href="css/back/style.css" rel="stylesheet">
 	<script src="js/highcharts/highcharts.js"></script>
-    <script>
+	<script src="js/date/jquery.date_input.pack.js"></script>
+	<%--<script src="http://www.jq22.com/jquery/jquery-migrate-1.2.1.min.js"></script>--%>
+	<%--<script src="js/date/lyz.calendar.min.js"></script>--%>
+	<%--<link href="css/back/lyz.calendar.css" rel="stylesheet">--%>
+	<script src="js/date/jquery-migrate-1.2.1.min.js"></script>
+	<%--<script src="http://www.jq22.com/jquery/jquery-migrate-1.2.1.min.js"></script>--%>
+	<script>
         function checkEmpty(id, name) {
             var value = $("#" + id).val();
             if (value.length === 0) {
