@@ -258,8 +258,8 @@ function syncPrice(pid,num,price){
                     </tr>
                 </c:forEach>             
             </tbody>
-         
         </table>
     </div>
-    <div style="text-align: center;margin: 10px;"> <button class="createOrderButton" disabled="disabled" >结 算</button></div>
+    <div style="text-align: center;margin: 10px;"><span>合计: </span>
+		<span class="cartSumPrice" >￥0.00</span><button class="createOrderButton" disabled="disabled" >结 算</button></div>
 </div>

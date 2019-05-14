@@ -4,7 +4,6 @@
 	<c:forEach items="${cs}" var="c">
 		<div cid="${c.id}" class="eachCategory">
 			<a href="forecategory?cid=${c.id}"> ${c.name} </a>
-			<%--<span style="float: right" class="glyphicon glyphicon-chevron-right"></span>--%>
 		</div>
 	</c:forEach>
 </div>

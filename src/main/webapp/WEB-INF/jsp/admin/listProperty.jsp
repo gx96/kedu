@@ -26,11 +26,18 @@
             <div class="listDataTableDiv propertyWorkingArea">
                 <ol class="breadcrumb">
                     <li><a href="admin_category_list">返回</a></li>
-                    <%--<li><a href="admin_property_list?cid=${c.id}">${c.name}</a></li>--%>
-                    <%--<li class="active">属性管理</li>--%>
                 </ol>
+				<form method="post" id="addForm" action="admin_property_add">
+					<table class="table table-striped table-bordered table-hover  table-condensed" style="margin-bottom: 3px">
+						<tr>
+							<th>增加属性</th>
+							<td>属性名称：<input type="text" id="name" name="name"></td>
+							<td><input type="hidden" name="cid" value="${c.id}"><input type="submit" value="提交"></td>
+						</tr>
+					</table>
+				</form>
                 <table
-                        class="table table-striped table-bordered table-hover  table-condensed">
+                        class="table table-striped table-bordered table-hover  table-condensed" style="margin-bottom: 0px">
                     <thead>
                     <tr class="info">
                         <th>属性编号</th>
@@ -57,15 +64,6 @@
             <div class="pageDiv">
                 <%@include file="../include/admin/adminPage.jsp" %>
             </div>
-            <form method="post" id="addForm" action="admin_property_add">
-                <table class="table table-striped table-bordered table-hover  table-condensed ">
-                    <tr>
-                        <th>增加属性</th>
-                        <td>属性名称：<input type="text" id="name" name="name"></td>
-                        <td><input type="hidden" name="cid" value="${c.id}"><input type="submit" value="提交"></td>
-                    </tr>
-                </table>
-            </form>
         </div>
     </div>
 </div>

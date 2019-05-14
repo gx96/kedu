@@ -12,8 +12,7 @@
                     <a href="#">当前用户：${sessionScope.admin.name}</a>
                 </li>
                 <li>
-                    <a href="adminLoginPage">
-                        <span class="glyphicon glyphicon-off"></span>退出登录</a>
+                    <a href="adminLoginPage"><span class="glyphicon glyphicon-off"></span>退出登录</a>
                 </li>
             </ul>
         </div>

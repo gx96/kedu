@@ -12,8 +12,8 @@
         $("#editForm").submit(function () {
             if (!checkEmpty("name", "产品名称"))
                 return false;
-//          if (!checkEmpty("subTitle", "小标题"))
-//              return false;
+         if (!checkEmpty("subTitle", "小标题"))
+             return false;
             if (!checkNumber("originalPrice", "原价格"))
                 return false;
             if (!checkNumber("promotePrice", "优惠价格"))
@@ -31,13 +31,8 @@
     <div class="pageContent">
         <div class="workingArea">
             <ol class="breadcrumb">
-                <%--<li><a href="admin_category_list">返回</a></li>--%>
-                <%--<li><a href="admin_product_list?cid=${p.category.id}">${p.category.name}</a></li>--%>
                 <li><a href="admin_product_list?cid=${p.category.id}">返回</a></li>
-                <%--<li class="active">${p.name}</li>--%>
-                <%--<li class="active">编辑产品</li>--%>
             </ol>
-
             <div class="panel panel-info editDiv">
                 <div class="panel-heading">编辑产品</div>
                 <div class="panel-body">

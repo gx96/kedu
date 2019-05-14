@@ -20,7 +20,17 @@
     <!-- 正文内容部分 -->
     <div class="pageContent">
         <div class="workingArea">
-            <table class="table table-striped table-bordered table-hover  table-condensed ">
+			<form method="post" id="addForm" action="admin_category_add" enctype="multipart/form-data">
+				<table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom:3px">
+					<tr>
+						<th>增加分类</th>
+						<td>名称：<input type="text" id="name" name="name"></td>
+						<td><input id="categoryPic" accept="image/*" type="file" name="image"></td>
+						<td><input type="submit" value="提交"></td>
+					</tr>
+				</table>
+			</form>
+            <table class="table table-striped table-bordered table-hover table-condensed" style="margin-bottom:0">
                 <thead>
                 <tr class="info">
                     <%--<th>分类编号</th>--%>
@@ -35,15 +45,12 @@
                 <tbody>
                 <c:forEach items="${cs}" var="c"><!--取到model中的cs集合，赋值给c数组，使用foreach从c[0]对象开始遍历-->
                 <tr>
-                        <%--<td>${c.id}</td>--%>
-                        <%--<td><img height="40px" src="img/category/${c.id}.jpg"></td>--%>
                     <td>${c.name}</td>
                     <td><a href="admin_property_list?cid=${c.id}"><span
                             class="glyphicon glyphicon-align-justify"></span></a></td>
                     <td><a href="admin_product_list?cid=${c.id}"><span class="glyphicon glyphicon-align-justify"></span></a>
                     </td>
                     <td><a href="admin_category_edit?id=${c.id}"><span class="glyphicon glyphicon-edit"></span></a></td>
-                    <!--deleteLink是自创的属性，配合jQuery使用-->
                     <td><a id="deleteButton" deleteLink="true" href="admin_category_delete?id=${c.id}"><span
                             class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
@@ -53,16 +60,6 @@
             <div class="pageDiv">
                 <%@include file="../include/admin/adminPage.jsp" %>
             </div>
-            <form method="post" id="addForm" action="admin_category_add" enctype="multipart/form-data">
-                <table class="table table-striped table-bordered table-hover  table-condensed ">
-                    <tr>
-                        <th>增加分类</th>
-                        <td>名称：<input type="text" id="name" name="name"></td>
-                        <td><input id="categoryPic" accept="image/*" type="file" name="image"></td>
-                        <td><input type="submit" value="提交"></td>
-                    </tr>
-                </table>
-            </form>
         </div>
     </div>
 </div>

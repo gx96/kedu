@@ -69,12 +69,12 @@ div.workingArea{
 	width:700px;
 }
 div.productWorkingArea1{
-	margin:60px 200px;
+	margin:60px 180px;
 	float:left;
 	width:800px;
 }
 div.productWorkingArea{
-	margin:60px 40px;
+	margin:5px 40px 5px;
 	float:left;
 	width:1100px;
 }
@@ -94,7 +94,7 @@ div.addDiv{
 }
 div.editDiv{
 	width:400px;
-	margin:100px auto;
+	margin:10px auto;
 	
 }
 a:hover {

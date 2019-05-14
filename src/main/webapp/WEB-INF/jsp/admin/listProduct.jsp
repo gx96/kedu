@@ -41,12 +41,26 @@
                 <%--<li><a href="admin_product_list?cid=${c.id}">${c.name}</a></li>--%>
                 <%--<li class="active">商品管理</li>--%>
             </ol>
+			<form method="post" id="addForm" action="admin_product_add" >
+				<table class="table table-striped table-bordered table-hover  table-condensed " style="margin-bottom:3px">
+					<tr>
+						<th>增加商品</th>
+						<td>名称：<input type="text" id="name" name="name" ></td>
+						<td>小标题：<input type="text" id="subTitle" name="subTitle" ></td>
+						<td>原价格：<input type="text" id="originalPrice" name="originalPrice" ></td>
+						<td>优惠价格：<input type="text" id="promotePrice" name="promotePrice" ></td>
+						<td>库存：<input type="text" id="stock" name="stock" ></td>
+						<td>
+							<input type="hidden" name="cid" value="${c.id}">
+							<input type="submit" value="提交">
+						</td>
+					</tr>
+				</table>
+			</form>
             <div class="listDataTableDiv">
-                <table
-                        class="table table-striped table-bordered table-hover  table-condensed">
+                <table class="table table-striped table-bordered table-hover  table-condensed" style="margin-bottom:0px">
                     <thead>
                     <tr class="info">
-                        <!-- 					<th>产品编号</th> -->
                         <th>图片</th>
                         <th>商品名称</th>
                         <th>小标题</th>
@@ -62,7 +76,6 @@
                     <tbody>
                     <c:forEach items="${ps}" var="p">
                         <tr>
-                                <%-- 						<td>${p.id}</td> --%>
                             <td><c:if test="${!empty p.firstProductImage}">
                                 <img width="40px" height="40px"
                                      src="img/productSingle/${p.firstProductImage.id}.jpg">
@@ -88,26 +101,9 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="pageDiv">
                 <%@include file="../include/admin/adminPage.jsp" %>
             </div>
-            <form method="post" id="addForm" action="admin_product_add" >
-                <table class="table table-striped table-bordered table-hover  table-condensed ">
-                    <tr>
-                        <th>增加商品</th>
-                        <td>名称：<input type="text" id="name" name="name" ></td>
-                        <td>小标题：<input type="text" id="subTitle" name="subTitle" ></td>
-                        <td>原价格：<input type="text" id="originalPrice" name="originalPrice" ></td>
-                        <td>优惠价格：<input type="text" id="promotePrice" name="promotePrice" ></td>
-                        <td>库存：<input type="text" id="stock" name="stock" ></td>
-                        <td>
-                            <input type="hidden" name="cid" value="${c.id}">
-                            <input type="submit" value="提交">
-                        </td>
-                    </tr>
-                </table>
-            </form>
         </div>
     </div>
 </div>

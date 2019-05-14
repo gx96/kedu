@@ -1,29 +1,18 @@
 <!DOCTYPE html><!--表示本页面会使用html5的技术-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
-<%--contentType="text/html; charset=UTF-8" 告诉浏览器使用UTF-8进行中文编码识别--%>
-<%--pageEncoding="UTF-8" 本jsp上的中文文字，使用UTF-8进行编码--%>
-<%--isELIgnored="false" 本jsp上会使用EL表达式--%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix='fmt' %>
-<%--引入JSTL：JSP Standard Tag Library (JSP标准标记库)--%>
-<%--使用c和fmt两种标准标签库--%>
 <html>
 <head>
-
 	<link href="img/site/favicon.ico" rel="shortcut icon" />
-    <script src="js/jquery/2.0.0/jquery.min.js"></script><!--通过在springMVC中的配置，将静态资源路径映射到webapp目录下-->
+    <script src="js/jquery/2.0.0/jquery.min.js"></script>
     <link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link href="css/back/style.css" rel="stylesheet">
 	<script src="js/highcharts/highcharts.js"></script>
 	<script src="js/date/jquery.date_input.pack.js"></script>
-	<%--<script src="http://www.jq22.com/jquery/jquery-migrate-1.2.1.min.js"></script>--%>
-	<%--<script src="js/date/lyz.calendar.min.js"></script>--%>
-	<%--<link href="css/back/lyz.calendar.css" rel="stylesheet">--%>
 	<script src="js/date/jquery-migrate-1.2.1.min.js"></script>
-	<%--<script src="http://www.jq22.com/jquery/jquery-migrate-1.2.1.min.js"></script>--%>
 	<script>
         function checkEmpty(id, name) {
             var value = $("#" + id).val();
@@ -58,12 +47,11 @@
                 $("#" + id)[0].focus();
                 return false;
             }
-            if (parseInt(value) !== value) {
-                alert(name + "必须是整数");
-                $("#" + id)[0].focus();
-                return false;
-            }
-
+            // if (parseInt(value) !== value) {
+            //     alert(name + "必须是整数"+value);
+            //     $("#" + id)[0].focus();
+            //     return false;
+            // }
             return true;
         }
 

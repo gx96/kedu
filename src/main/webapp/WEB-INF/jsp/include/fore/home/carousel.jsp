@@ -15,16 +15,16 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="carousel carouselImage" height="400px" src="img/carousel/1.jpg">
+            <a href="forecategory?cid=1"><img class="carousel carouselImage" height="400px" src="img/carousel/2.jpg"></a>
         </div>
         <div class="item">
-            <img class="carouselImage" height="400px" src="img/carousel/2.jpg">
+            <a href="forecategory?cid=2"><img class="carouselImage" height="400px" src="img/carousel/1.jpg"></a>
         </div>
         <div class="item">
-            <img class="carouselImage" height="400px" src="img/carousel/3.jpg">
+            <a href="forecategory?cid=3"><img class="carouselImage" height="400px" src="img/carousel/3.jpg"></a>
         </div>
         <div class="item">
-            <img class="carouselImage" height="400px" src="img/carousel/4.jpg">
+            <a href="forecategory?cid=4"><img class="carouselImage" height="400px" src="img/carousel/4.jpg" ></a>
         </div>
     </div>
     <%@include file="recommend.jsp"%>

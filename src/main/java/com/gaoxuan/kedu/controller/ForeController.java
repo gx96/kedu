@@ -51,6 +51,8 @@ public class ForeController {
 	AlipayService alipayService;
 	@Autowired
 	AddressService addressService;
+
+	//首页
 	@RequestMapping("forehome")
 	public String home(Model model, HttpSession session) {
 		List<Category> cs = categoryService.list();
@@ -94,6 +96,7 @@ public class ForeController {
 		return "fore/home";
 	}
 
+	//注册
 	@RequestMapping("foreregister")
 	public String register(Model model, User user) {
 		String name = user.getName();
@@ -112,12 +115,14 @@ public class ForeController {
 		return "redirect:RegisterSuccess1";
 	}
 
+	//注册成功
 	@RequestMapping("RegisterSuccess1")
 	public String RegisterSuccess1(Model model, HttpSession session) {
 
 		return "fore/registerSuccess";
 	}
 
+	//登录验证
 	@RequestMapping("forelogin")
 	public String login(@RequestParam("name") String name, @RequestParam("password") String password, Model model,
 						HttpSession session) {
@@ -131,6 +136,7 @@ public class ForeController {
 		return "redirect:forehome";
 	}
 
+	//退出登录
 	@RequestMapping("forelogout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
@@ -161,6 +167,7 @@ public class ForeController {
 		return "fore/product";
 	}
 
+	//检查登录
 	@RequestMapping("forecheckLogin")
 	@ResponseBody
 	public String checkLogin(HttpSession session) {
@@ -170,6 +177,7 @@ public class ForeController {
 		return "fail";
 	}
 
+	//登录
 	@RequestMapping("foreloginAjax")
 	@ResponseBody
 	public String loginAjax(@RequestParam("name") String name, @RequestParam("password") String password,
@@ -184,6 +192,7 @@ public class ForeController {
 		return "success";
 	}
 
+	//显示分类
 	@RequestMapping("forecategory")
 	public String category(int cid, String sort, Model model) {
 		Category c = categoryService.get(cid);
@@ -216,7 +225,7 @@ public class ForeController {
 		model.addAttribute("c", c);
 		return "fore/category";
 	}
-
+	//搜索
 	@RequestMapping("foresearch")
 	public String search(String keyword, Model model, HttpSession session) {
 
@@ -296,17 +305,6 @@ public class ForeController {
 		User user = (User) session.getAttribute("user");
 		Address address = addressService.getByUid(user.getId());
 		model.addAttribute("address", address);
-//        for (OrderItem oi : ois) {
-//            OrderItem oi1=orderItemService.get(oi.getId());
-//            ois.add(oi1);
-//    }
-//        for(String strid:ois.)
-//        for (String strid : oiid) {
-//            int id = Integer.parseInt(strid);
-//            OrderItem oi = orderItemService.get(id);
-//            total += oi.getProduct().getPromotePrice() * oi.getNumber();
-//            ois.add(oi);
-//        }
 
 		session.setAttribute("ois", ois);
 		model.addAttribute("total", total);
@@ -314,6 +312,7 @@ public class ForeController {
 		return "fore/buy";
 	}
 
+	//增加购物车
 	@RequestMapping("foreaddCart")
 	@ResponseBody
 	public String addCart(int pid, int num, Model model, HttpSession session) {
@@ -341,6 +340,7 @@ public class ForeController {
 		return "success";
 	}
 
+	//查看购物车
 	@RequestMapping("forecart")
 	public String cart(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -349,6 +349,7 @@ public class ForeController {
 		return "fore/cart";
 	}
 
+	//修改购物车订单项
 	@RequestMapping("forechangeOrderItem")
 	@ResponseBody
 	public String changeOrderItem(Model model, HttpSession session, int pid, int number) {
@@ -368,6 +369,7 @@ public class ForeController {
 		return "success";
 	}
 
+	//删除购物车订单项
 	@RequestMapping("foredeleteOrderItem")
 	@ResponseBody
 	public String deleteOrderItem(Model model, HttpSession session, int oiid) {
@@ -390,7 +392,6 @@ public class ForeController {
 		if (orderCode.length() > 10) {
 			float total = 0;
 			oCode = orderCode;
-			System.out.println(oCode + "11");
 			for (OrderItem oi : ois) {
 				total += oi.getProduct().getPromotePrice() * oi.getNumber();
 			}
@@ -411,9 +412,6 @@ public class ForeController {
 			order.setStatus(OrderService.waitPay);
 			total_fee = orderService.add(order, ois) + "";
 		}
-
-		//微信接口
-		//Map map=weixinPayService.createNative(idWorker.nextId()+"","1");
 		//支付宝接口
 		//获得初始化的AlipayClient
 		AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
@@ -422,7 +420,7 @@ public class ForeController {
 		alipayRequest.setReturnUrl(AlipayConfig.return_url);
 		alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
-		String subject = "kedu";//不能用中文
+		String subject = "kedu";
 		alipayRequest.setBizContent("{\"out_trade_no\":\"" + oCode + "\","
 				+ "\"total_amount\":\"" + total_fee + "\","
 				+ "\"subject\":\"" + subject + "\","
@@ -430,8 +428,6 @@ public class ForeController {
 		//请求
 		System.out.println(alipayRequest);
 		String result = null;
-		System.out.println(total_fee);
-		System.out.println(oCode);
 		try {
 			result = alipayClient.pageExecute(alipayRequest).getBody();
 			System.out.println(result);
@@ -444,6 +440,7 @@ public class ForeController {
 //        return "redirect:forealipay?oid=" + order.getId() + "&total=" + total;
 	}
 
+	//微信支付
 	@RequestMapping("forealipay")
 	public String alipay(Model model, HttpServletRequest request) {
 
@@ -451,8 +448,8 @@ public class ForeController {
 		return "fore/alipay";
 	}
 
+	//支付成功
 	@RequestMapping("forepayed")
-//    public String payed(int oid, float total, Model model) {
 	public String payed(String out_trade_no, Model model, String timestamp, String total_amount) {
 		Order order = orderService.getByid(out_trade_no);
 		order.setStatus(OrderService.waitDelivery);
@@ -460,14 +457,10 @@ public class ForeController {
 		orderService.update(order);
 		model.addAttribute("o", order);
 		model.addAttribute("total_amount", total_amount);
-//        Order order = orderService.get(oid);
-//        order.setStatus(OrderService.waitDelivery);
-//        order.setPayDate(new Date());
-//        orderService.update(order);
-//        model.addAttribute("o", order);
 		return "fore/payed";
 	}
 
+	//订单查看
 	@RequestMapping("forebought")
 	public String bought(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -477,6 +470,7 @@ public class ForeController {
 		return "fore/bought";
 	}
 
+	//确认支付
 	@RequestMapping("foreconfirmPay")
 	public String confirmPay(Model model, int oid) {
 		Order o = orderService.get(oid);
@@ -485,6 +479,7 @@ public class ForeController {
 		return "fore/confirmPay";
 	}
 
+	//确认支付成功
 	@RequestMapping("foreorderConfirmed")
 	public String orderConfirmed(Model model, int oid) {
 		Order o = orderService.get(oid);
@@ -494,6 +489,7 @@ public class ForeController {
 		return "fore/orderConfirmed";
 	}
 
+	//不显示订单
 	@RequestMapping("foredeleteOrder")
 	@ResponseBody
 	public String deleteOrder(Model model, int oid) {
@@ -503,6 +499,7 @@ public class ForeController {
 		return "success";
 	}
 
+	//评论
 	@RequestMapping("forereview")
 	public String review(Model model, int oid) {
 		Order o = orderService.get(oid);
@@ -516,6 +513,7 @@ public class ForeController {
 		return "fore/reviewSuccess";
 	}
 
+	//评论完成
 	@RequestMapping("foredoreview")
 	public String doreview(Model model, HttpSession session, @RequestParam("oid") int oid, @RequestParam("pid") int pid, String content) {
 		Order o = orderService.get(oid);
@@ -526,6 +524,12 @@ public class ForeController {
 		content = HtmlUtils.htmlEscape(content);
 
 		User user = (User) session.getAttribute("user");
+		List<Review> reviewList=reviewService.list(pid);
+		for(Review r:reviewList){
+			if(r.getContent().equals(content)){
+				return "redirect:forereview?oid=" + oid + "&showonly=true";
+			}
+		}
 		Review review = new Review();
 		review.setContent(content);
 		review.setPid(pid);
